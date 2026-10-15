@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0C1831" />
+  <title>Peptid-PY | Advanced Peptide Solutions</title>
+  <meta name="description"
+    content="Peptid-PY: peptídeos de grau farmacêutico com certificação de pureza +99%, envio refrigerado e suporte especializado." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0C1831',
+            accent: '#DC2626',
+            surface: '#F8FAFC',
+            'border-soft': '#E2E8F0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-primary font-sans antialiased">
+
+  <!-- ============================================================
+       TOP BAR
+  ============================================================= -->
+  <div class="bg-primary text-white text-xs font-light">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row items-center justify-between gap-1">
+      <p class="flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" />
+        </svg>
+        Frete seguro com embalagem refrigerada para todo o Brasil
+      </p>
+      <div class="flex items-center gap-4">
+        <span>Televendas: <a href="tel:+551140049821" class="hover:underline font-medium">(11) 4004-9821</a></span>
+        <span class="opacity-40" aria-hidden="true">|</span>
+        <a href="#suporte" class="hover:underline">Suporte</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HEADER PRINCIPAL
+  ============================================================= -->
+  <header class="border-b border-border-soft bg-white sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8">
+      <!-- Logo -->
+      <a href="index.html" class="flex flex-col leading-none shrink-0" aria-label="Peptid-PY - Página inicial">
+        <span class="text-2xl font-extrabold tracking-tight">Peptid<span class="text-accent">-PY</span></span>
+        <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">Advanced Peptide Solutions</span>
+      </a>
+
+      <!-- Busca -->
+      <form action="/busca" method="get" role="search"
+        class="order-3 lg:order-none w-full lg:flex-1 flex items-stretch border border-border-soft rounded-full overflow-hidden focus-within:border-primary transition-colors">
+        <label for="busca-categoria" class="sr-only">Categoria</label>
+        <select id="busca-categoria" name="categoria"
+          class="hidden sm:block bg-surface text-sm text-slate-600 px-4 border-r border-border-soft outline-none">
+          <option value="">Todas</option>
+          <option value="injetaveis">Peptídeos Injetáveis</option>
+          <option value="emagrecimento">Emagrecimento</option>
+          <option value="estetica">Estética &amp; Anti-Aging</option>
+          <option value="muscular">Ganho Muscular</option>
+          <option value="recuperacao">Recuperação</option>
+          <option value="diluentes">Soluções Diluentes</option>
+        </select>
+        <label for="busca-termo" class="sr-only">Buscar produtos</label>
+        <input id="busca-termo" name="q" type="search" placeholder="Buscar peptídeos, fármacos, diluentes..."
+          class="flex-1 px-4 py-2.5 text-sm outline-none min-w-0" />
+        <button type="submit" class="px-5 bg-primary text-white hover:bg-accent transition-colors" aria-label="Buscar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path stroke-linecap="round" d="M20 20l-3.5-3.5" />
+          </svg>
+        </button>
+      </form>
+
+      <!-- Ações -->
+      <div class="ml-auto lg:ml-0 flex items-center gap-2 sm:gap-4 shrink-0">
+        <a href="https://wa.me/5511991234567" target="_blank" rel="noopener"
+          class="hidden md:flex items-center gap-2 text-sm font-medium border border-border-soft rounded-xl px-4 py-2 hover:border-green-600 hover:text-green-700 transition-colors">
+          <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z" />
+          </svg>
+          Atendimento
+        </a>
+        <a href="/conta" class="p-2 rounded-xl hover:bg-surface transition-colors" aria-label="Minha conta">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <circle cx="12" cy="8" r="4" />
+            <path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0" />
+          </svg>
+        </a>
+        <a href="/carrinho" class="relative p-2 rounded-xl hover:bg-surface transition-colors" aria-label="Carrinho">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6" />
+            <circle cx="10" cy="20.5" r="1" />
+            <circle cx="17" cy="20.5" r="1" />
+          </svg>
+          <span
+            class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-accent text-white text-[11px] font-bold flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Barra de categorias centralizada com letra azul, opacidade 0.8 e hover 1 -->
+    <nav aria-label="Categorias" class="border-t border-border-soft bg-white">
+      <ul
+        class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-6 lg:gap-10 overflow-x-auto text-sm font-semibold whitespace-nowrap">
+        <!-- INÍCIO LOOP MENU CATEGORIAS -->
+        <li><a href="/categoria/injetaveis"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Peptídeos
+            Injetáveis</a></li>
+        <li><a href="/categoria/emagrecimento"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Emagrecimento</a>
+        </li>
+        <li><a href="/categoria/estetica"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Estética
+            &amp; Anti-Aging</a></li>
+        <li><a href="/categoria/muscular"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Ganho
+            Muscular</a></li>
+        <li><a href="/categoria/recuperacao"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Recuperação</a>
+        </li>
+        <li><a href="/categoria/diluentes"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Soluções
+            Diluentes</a></li>
+        <!-- FIM LOOP MENU CATEGORIAS -->
+        <li><a href="/ofertas" class="block py-3 text-accent font-bold hover:opacity-80 transition-opacity">Ofertas</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         HERO BANNER (IMAGEM DE PONTA A PONTA)
+    ============================================================= -->
+    <section class="relative overflow-hidden bg-primary text-white min-h-[580px] flex items-center">
+      <!-- Imagem de fundo de ponta a ponta -->
+      <img src="hero-pipted.jpg" alt="Peptid-PY Fundo Hero"
+        class="absolute inset-0 w-full h-full object-cover object-center" />
+      <!-- Overlay degradê azul para contraste e legibilidade perfeita -->
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/45 lg:to-primary/25"
+        aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-28 w-full">
+        <div class="max-w-2xl">
+          <span
+            class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200 border border-white/20 bg-primary/50 backdrop-blur-md rounded-full px-4 py-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            Grau Farmacêutico Certificado
+          </span>
+          <h1
+            class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-sm text-balance">
+            Peptídeos Puros de <span class="text-accent">Grau Farmacêutico</span> com Certificação de <span
+              class="text-accent">Pureza</span>
+          </h1>
+          <p class="mt-6 text-lg text-slate-200 font-light leading-relaxed drop-shadow-sm">
+            Cada lote é analisado por HPLC e acompanha laudo técnico. Envio refrigerado, discreto e rastreável.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#destaques"
+              class="inline-flex items-center gap-2 bg-accent hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-red-950/40 transition-all hover:scale-[1.02]">
+              Ver catálogo
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+            <a href="#laudos"
+              class="inline-flex items-center gap-2 bg-white text-primary hover:bg-slate-100 font-bold px-8 py-3.5 rounded-xl shadow-xl transition-all hover:scale-[1.02]">
+              Consultar laudos de pureza
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST BADGES (ÍCONES ACIMA DOS TEXTOS)
+    ============================================================= -->
+    <section aria-label="Benefícios" class="border-b border-border-soft bg-surface/60">
+      <ul class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <li class="flex flex-col items-center text-center p-3">
+          <span
+            class="w-14 h-14 rounded-2xl bg-white border border-border-soft shadow-sm flex items-center justify-center text-primary mb-3">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M9 3.5l3 2 3-2M9 20.5l3-2 3 2" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Envio Refrigerado e Discreto</h2>
+          <p class="text-xs text-slate-500 mt-1 leading-relaxed">Embalagem térmica com gel refrigerante.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span
+            class="w-14 h-14 rounded-2xl bg-white border border-border-soft shadow-sm flex items-center justify-center text-primary mb-3">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3M7 15h10" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Pureza Laboratorial Comprovada</h2>
+          <p class="text-xs text-slate-500 mt-1 leading-relaxed">Laudo HPLC disponível para cada lote.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span
+            class="w-14 h-14 rounded-2xl bg-white border border-border-soft shadow-sm flex items-center justify-center text-primary mb-3">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Suporte via WhatsApp</h2>
+          <p class="text-xs text-slate-500 mt-1 leading-relaxed">Atendimento especializado e humanizado.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span
+            class="w-14 h-14 rounded-2xl bg-white border border-border-soft shadow-sm flex items-center justify-center text-primary mb-3">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <rect x="4" y="10" width="16" height="11" rx="2" />
+              <path stroke-linecap="round" d="M8 10V7a4 4 0 0 1 8 0v3" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Pagamento Seguro</h2>
+          <p class="text-xs text-slate-500 mt-1 leading-relaxed">Pix, cartão e boleto com criptografia SSL.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         BANNERS DE AÇÃO RÁPIDA
+    ============================================================= -->
+    <section class="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-6">
+      <a href="https://wa.me/5511991234567" target="_blank" rel="noopener"
+        class="group flex items-center justify-between gap-6 bg-surface border border-border-soft rounded-3xl p-8 hover:border-primary transition-colors">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Atendimento direto</p>
+          <h2 class="mt-2 text-xl font-bold">Fale com o Farmacêutico no WhatsApp</h2>
+          <p class="mt-2 text-sm text-slate-500">Tire dúvidas sobre protocolos, dosagens e reconstituição.</p>
+        </div>
+        <span
+          class="shrink-0 w-14 h-14 rounded-full bg-green-600 text-white flex items-center justify-center group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z" />
+          </svg>
+        </span>
+      </a>
+      <a href="#vip"
+        class="group flex items-center justify-between gap-6 bg-primary text-white rounded-3xl p-8 hover:bg-[#13254a] transition-colors">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Comunidade exclusiva</p>
+          <h2 class="mt-2 text-xl font-bold">Grupo VIP de Avisos e Reposições</h2>
+          <p class="mt-2 text-sm text-slate-300">Seja o primeiro a saber de novos lotes e condições especiais.</p>
+        </div>
+        <span
+          class="shrink-0 w-14 h-14 rounded-full bg-accent text-white flex items-center justify-center group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0" />
+          </svg>
+        </span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         VITRINE 1: PEPTÍDEOS EM DESTAQUE / PROMOÇÕES
+    ============================================================= -->
+    <section id="destaques" class="max-w-7xl mx-auto px-4 py-14">
+      <div class="flex items-end justify-between gap-4 mb-8">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-accent font-bold">Promoções Exclusivas</p>
+          <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-primary">Peptídeos em Destaque</h2>
+        </div>
+        <a href="/categoria/destaques"
+          class="text-sm font-semibold text-primary opacity-80 hover:opacity-100 whitespace-nowrap transition-opacity">Ver
+          todos &rarr;</a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <!-- CARD 1 -->
+        <article
+          class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span
+              class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">-15%
+              OFF</span>
+            <img src="lipoless-15-tirzepatida.jpg" alt="Tirzepatida 10mg + Água BAC 5ml"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p
+              class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+              Emagrecimento</p>
+            <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html"
+                class="hover:text-accent">Tirzepatida 10mg + Água BAC 5ml</a></h3>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 1.290,00</span>
+              <p class="text-xl font-bold text-primary">R$ 1.096,50 <span class="text-xs font-normal text-slate-500">à
+                  vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+              / Ver Detalhes</a>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article
+          class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span
+              class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">99.2%
+              Pureza</span>
+            <img src="tg15-tirzepatida.jpg" alt="Semaglutida 5mg + Água BAC"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p
+              class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+              Emagrecimento</p>
+            <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html"
+                class="hover:text-accent">Semaglutida 5mg + Água BAC 3ml</a></h3>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 890,00</span>
+              <p class="text-xl font-bold text-primary">R$ 790,00 <span class="text-xs font-normal text-slate-500">à
+                  vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+              / Ver Detalhes</a>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article
+          class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span
+              class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">-10%
+              OFF</span>
+            <img src="tirzedral-15.jpg" alt="BPC-157 5mg"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p
+              class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+              Recuperação</p>
+            <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html" class="hover:text-accent">BPC-157
+                5mg Liofilizado</a></h3>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 420,00</span>
+              <p class="text-xl font-bold text-primary">R$ 378,00 <span class="text-xs font-normal text-slate-500">à
+                  vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+              / Ver Detalhes</a>
+          </div>
+        </article>
+
+        <!-- CARD 4 (DADOS MOCKADOS) -->
+        <article
+          class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span
+              class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">99.7%
+              Pureza</span>
+            <img src="tirzec-15-4-viales.jpg" alt="Tirzec 15mg (Kit 4 Viales)"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p
+              class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+              Ganho Muscular</p>
+            <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html" class="hover:text-accent">Tirzec
+                15mg (Kit 4 Viales)</a></h3>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 1.450,00</span>
+              <p class="text-xl font-bold text-primary">R$ 1.232,50 <span class="text-xs font-normal text-slate-500">à
+                  vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+              / Ver Detalhes</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VITRINE 2: LINHA ESTÉTICA E FÁRMACOS
+    ============================================================= -->
+    <section class="bg-surface border-y border-border-soft">
+      <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="flex items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] text-accent font-bold">Estética &amp; Anti-Aging</p>
+            <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-primary">Linha Estética e Fármacos</h2>
+          </div>
+          <a href="/categoria/estetica"
+            class="text-sm font-semibold text-primary opacity-80 hover:opacity-100 whitespace-nowrap transition-opacity">Ver
+            todos &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <!-- CARD 5 -->
+          <article
+            class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+            <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+              <span
+                class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">99.4%
+                Pureza</span>
+              <img src="gluconex.jpg" alt="GHK-Cu 50mg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </a>
+            <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+              <p
+                class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+                Anti-Aging</p>
+              <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html"
+                  class="hover:text-accent">GHK-Cu 50mg Peptídeo de Cobre</a></h3>
+              <div class="mt-3">
+                <span class="text-xs text-slate-400 line-through">R$ 380,00</span>
+                <p class="text-xl font-bold text-primary">R$ 342,00 <span class="text-xs font-normal text-slate-500">à
+                    vista</span></p>
+              </div>
+              <a href="produto.html"
+                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+                / Ver Detalhes</a>
+            </div>
+          </article>
+
+          <!-- CARD 6 -->
+          <article
+            class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+            <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+              <span
+                class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">-20%
+                OFF</span>
+              <img src="lipoland.jpg" alt="Melanotan II 10mg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </a>
+            <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+              <p
+                class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+                Estética</p>
+              <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html"
+                  class="hover:text-accent">Melanotan II 10mg</a></h3>
+              <div class="mt-3">
+                <span class="text-xs text-slate-400 line-through">R$ 310,00</span>
+                <p class="text-xl font-bold text-primary">R$ 248,00 <span class="text-xs font-normal text-slate-500">à
+                    vista</span></p>
+              </div>
+              <a href="produto.html"
+                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+                / Ver Detalhes</a>
+            </div>
+          </article>
+
+          <!-- CARD 7 -->
+          <article
+            class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+            <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+              <span
+                class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">99.1%
+                Pureza</span>
+              <img src="lipoless-md-15-tirzepatida.jpg" alt="Ipamorelin 5mg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </a>
+            <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+              <p
+                class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+                Ganho Muscular</p>
+              <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html"
+                  class="hover:text-accent">Ipamorelin 5mg Liofilizado</a></h3>
+              <div class="mt-3">
+                <span class="text-xs text-slate-400 line-through">R$ 350,00</span>
+                <p class="text-xl font-bold text-primary">R$ 315,00 <span class="text-xs font-normal text-slate-500">à
+                    vista</span></p>
+              </div>
+              <a href="produto.html"
+                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+                / Ver Detalhes</a>
+            </div>
+          </article>
+
+          <!-- CARD 8 -->
+          <article
+            class="group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all">
+            <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+              <span
+                class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">Diluente</span>
+              <img src="t36-15-tirzepatida-4-viales.jpg" alt="Água Bacteriostática 10ml"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </a>
+            <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+              <p
+                class="text-[11px] uppercase tracking-wider text-primary opacity-80 hover:opacity-100 font-semibold transition-opacity">
+                Soluções Diluentes</p>
+              <h3 class="mt-1 font-semibold text-sm leading-snug"><a href="produto.html" class="hover:text-accent">Água
+                  Bacteriostática 10ml</a></h3>
+              <div class="mt-3">
+                <span class="text-xs text-slate-400 line-through">R$ 69,00</span>
+                <p class="text-xl font-bold text-primary">R$ 59,00 <span class="text-xs font-normal text-slate-500">à
+                    vista</span></p>
+              </div>
+              <a href="produto.html"
+                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
+                / Ver Detalhes</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       RODAPÉ INSTITUCIONAL
+  ============================================================= -->
+  <footer id="suporte" class="bg-primary text-slate-300 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <p class="text-2xl font-extrabold text-white tracking-tight">Peptid<span class="text-accent">-PY</span></p>
+        <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 mt-1">Advanced Peptide Solutions</p>
+        <p class="mt-4 leading-relaxed text-slate-400">Peptídeos laboratoriais e suplementação de alta performance com
+          rastreabilidade de lote.</p>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Políticas</h2>
+        <ul class="space-y-2">
+          <li><a href="/politica-de-privacidade" class="hover:text-white">Política de Privacidade</a></li>
+          <li><a href="/trocas-e-devolucoes" class="hover:text-white">Trocas e Devoluções</a></li>
+          <li><a href="/politica-de-envio" class="hover:text-white">Política de Envio</a></li>
+          <li><a href="/termos-de-uso" class="hover:text-white">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Conformidade Técnica</h2>
+        <ul class="space-y-2">
+          <li><a href="#laudos" id="laudos" class="hover:text-white">Laudos HPLC por Lote</a></li>
+          <li><a href="/boas-praticas" class="hover:text-white">Boas Práticas de Armazenamento</a></li>
+          <li><a href="/rastreabilidade" class="hover:text-white">Rastreabilidade</a></li>
+          <li><a href="/faq" class="hover:text-white">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Pagamento</h2>
+        <ul class="flex flex-wrap gap-2" aria-label="Métodos de pagamento">
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Pix</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Visa</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Mastercard</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Elo</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Boleto</li>
+        </ul>
+        <p class="mt-6 text-white font-semibold">Atendimento</p>
+        <p class="mt-1 text-slate-400">(11) 4004-9821<br />Seg a Sex, 9h às 18h</p>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-6 text-xs text-slate-400 leading-relaxed space-y-2">
+        <p><strong class="text-slate-200">Aviso legal:</strong> Os produtos comercializados destinam-se a uso
+          responsável, sob orientação de profissional de saúde habilitado. As informações deste site têm caráter
+          informativo e não substituem consulta médica. Mantenha fora do alcance de crianças.</p>
+        <p>&copy; 2026 Peptid-PY — Advanced Peptide Solutions. Todos os direitos reservados. CNPJ 45.892.104/0001-33</p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
