@@ -8,6 +8,7 @@
   <title>Tirzepatida 10mg + Água BAC 5ml | Peptid-PY</title>
   <meta name="description"
     content="Peptid-PY: peptídeos de grau farmacêutico com certificação de pureza +99%, envio refrigerado e suporte especializado." />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -54,30 +55,18 @@
        HEADER PRINCIPAL
   ============================================================= -->
   <header class="border-b border-border-soft bg-white sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap lg:flex-nowrap items-center gap-4 lg:gap-8">
       <!-- Logo -->
-      <a href="index.html" class="flex flex-col leading-none shrink-0" aria-label="Peptid-PY - Página inicial">
-        <span class="text-2xl font-extrabold tracking-tight">Peptid<span class="text-accent">-PY</span></span>
-        <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">Advanced Peptide Solutions</span>
+      <a href="index.html" class="flex items-center shrink-0" aria-label="Peptid-PY - Página inicial">
+        <img src="assets/images/logo-peptidpy.png" alt="Peptid-PY - Advanced Peptide Solutions" class="h-10 sm:h-11 w-auto object-contain" />
       </a>
 
       <!-- Busca -->
-      <form action="/busca" method="get" role="search"
+      <form action="produtos.html" method="get" role="search"
         class="order-3 lg:order-none w-full lg:flex-1 flex items-stretch border border-border-soft rounded-full overflow-hidden focus-within:border-primary transition-colors">
-        <label for="busca-categoria" class="sr-only">Categoria</label>
-        <select id="busca-categoria" name="categoria"
-          class="hidden sm:block bg-surface text-sm text-slate-600 px-4 border-r border-border-soft outline-none">
-          <option value="">Todas</option>
-          <option value="injetaveis">Peptídeos Injetáveis</option>
-          <option value="emagrecimento">Emagrecimento</option>
-          <option value="estetica">Estética &amp; Anti-Aging</option>
-          <option value="muscular">Ganho Muscular</option>
-          <option value="recuperacao">Recuperação</option>
-          <option value="diluentes">Soluções Diluentes</option>
-        </select>
         <label for="busca-termo" class="sr-only">Buscar produtos</label>
-        <input id="busca-termo" name="q" type="search" placeholder="Buscar peptídeos, fármacos, diluentes..."
-          class="flex-1 px-4 py-2.5 text-sm outline-none min-w-0" />
+        <input id="busca-termo" name="busca" type="search" placeholder="Buscar peptídeos, fármacos, diluentes..."
+          class="flex-1 px-5 py-2.5 text-sm outline-none min-w-0 bg-transparent" />
         <button type="submit" class="px-5 bg-primary text-white hover:bg-accent transition-colors" aria-label="Buscar">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
             aria-hidden="true">
@@ -97,14 +86,26 @@
           </svg>
           Atendimento
         </a>
-        <a href="/conta" class="p-2 rounded-xl hover:bg-surface transition-colors" aria-label="Minha conta">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
-            aria-hidden="true">
-            <circle cx="12" cy="8" r="4" />
-            <path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0" />
-          </svg>
-        </a>
-        <a href="/carrinho" class="relative p-2 rounded-xl hover:bg-surface transition-colors" aria-label="Carrinho">
+        <!-- PHP: DROPDOWN CONTA (exibir 'Entrar/Cadastrar' se deslogado; 'Minha Conta/Pedidos/Sair' se logado via $_SESSION) -->
+        <div class="relative group">
+          <a href="minha-conta.html" class="block p-2 rounded-xl hover:bg-surface focus:bg-surface transition-colors" aria-label="Minha conta" aria-haspopup="true">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" />
+              <path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0" />
+            </svg>
+          </a>
+          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all absolute right-0 top-full pt-2 w-56 z-50">
+            <div class="bg-white border border-border-soft rounded-lg shadow-xl py-2 text-sm">
+              <a href="minha-conta.html" class="block px-4 py-2 hover:bg-surface">Minha Conta / Dados</a>
+              <a href="minha-conta.html#pedidos" class="block px-4 py-2 hover:bg-surface">Histórico de Pedidos</a>
+              <a href="login.html" class="block px-4 py-2 hover:bg-surface">Entrar / Cadastrar</a>
+              <hr class="my-2 border-border-soft" />
+              <!-- PHP: LINK /logout.php -->
+              <a href="login.html" class="block px-4 py-2 text-accent hover:bg-red-50 font-medium">Sair da Conta</a>
+            </div>
+          </div>
+        </div>
+        <a href="carrinho.html" class="relative p-2 rounded-xl hover:bg-surface transition-colors" aria-label="Carrinho">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
             aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -123,22 +124,22 @@
       <ul
         class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-6 lg:gap-10 overflow-x-auto text-sm font-semibold whitespace-nowrap">
         <!-- INÍCIO LOOP MENU CATEGORIAS -->
-        <li><a href="/categoria/injetaveis"
-            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Peptídeos Injetáveis</a></li>
-        <li><a href="/categoria/emagrecimento"
+        <li><a href="produtos.html?categoria=peptideos"
+            class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Peptídeos</a></li>
+        <li><a href="produtos.html?categoria=emagrecimento"
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Emagrecimento</a>
         </li>
-        <li><a href="/categoria/estetica"
+        <li><a href="produtos.html?categoria=estetica"
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Estética &amp; Anti-Aging</a></li>
-        <li><a href="/categoria/muscular"
+        <li><a href="produtos.html?categoria=muscular"
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Ganho Muscular</a></li>
-        <li><a href="/categoria/recuperacao"
+        <li><a href="produtos.html?categoria=recuperacao"
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Recuperação</a>
         </li>
-        <li><a href="/categoria/diluentes"
+        <li><a href="produtos.html?categoria=diluentes"
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Soluções Diluentes</a></li>
         <!-- FIM LOOP MENU CATEGORIAS -->
-        <li><a href="/ofertas" class="block py-3 text-accent font-bold hover:opacity-80 transition-opacity">Ofertas</a></li>
+        <li><a href="produtos.html?categoria=ofertas" class="block py-3 text-accent font-bold hover:opacity-80 transition-opacity">Ofertas</a></li>
       </ul>
     </nav>
   </header>
@@ -151,7 +152,9 @@
       <ol class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
         <li><a href="index.html" class="hover:text-primary">Início</a></li>
         <li aria-hidden="true">/</li>
-        <li><a href="/categoria/farmacos-peptideos" class="hover:text-primary">Fármacos &amp; Peptídeos</a></li>
+        <li><a href="produtos.html" class="hover:text-primary">Produtos</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="produtos.html?categoria=emagrecimento" class="hover:text-primary">Emagrecimento</a></li>
         <li aria-hidden="true">/</li>
         <li aria-current="page" class="text-primary font-medium">Tirzepatida 10mg + Água BAC 5ml</li>
       </ol>
@@ -168,23 +171,23 @@
             OFF</span>
           <span class="absolute top-5 right-5 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">99.2%
             Pureza</span>
-          <img id="imagem-principal" src="lipoless-15-tirzepatida.jpg" alt="Tirzepatida 10mg + Água BAC 5ml"
+          <img id="imagem-principal" src="assets/images/lipoless-15-tirzepatida.jpg" alt="Tirzepatida 10mg + Água BAC 5ml"
             class="w-full aspect-square object-contain" />
         </div>
         <ul class="mt-4 grid grid-cols-4 gap-3" aria-label="Miniaturas do produto">
           <!-- INÍCIO LOOP IMAGENS PRODUTO -->
-          <li><button type="button" data-thumb="lipoless-15-tirzepatida.jpg" aria-label="Ver imagem 1"
-              class="thumb w-full bg-white border-2 border-primary rounded-xl p-2"><img src="lipoless-15-tirzepatida.jpg"
+          <li><button type="button" data-thumb="assets/images/lipoless-15-tirzepatida.jpg" aria-label="Ver imagem 1"
+              class="thumb w-full bg-white border-2 border-primary rounded-xl p-2"><img src="assets/images/lipoless-15-tirzepatida.jpg"
                 alt="" class="w-full aspect-square object-contain" /></button></li>
-          <li><button type="button" data-thumb="lipoless-md-15-tirzepatida.jpg" aria-label="Ver imagem 2"
+          <li><button type="button" data-thumb="assets/images/lipoless-md-15-tirzepatida.jpg" aria-label="Ver imagem 2"
               class="thumb w-full bg-white border-2 border-border-soft hover:border-slate-400 rounded-xl p-2"><img
-                src="lipoless-md-15-tirzepatida.jpg" alt="" class="w-full aspect-square object-contain" /></button></li>
-          <li><button type="button" data-thumb="tirzec-15-tirzepatida.jpg" aria-label="Ver imagem 3"
+                src="assets/images/lipoless-md-15-tirzepatida.jpg" alt="" class="w-full aspect-square object-contain" /></button></li>
+          <li><button type="button" data-thumb="assets/images/tirzec-15-tirzepatida.jpg" aria-label="Ver imagem 3"
               class="thumb w-full bg-white border-2 border-border-soft hover:border-slate-400 rounded-xl p-2"><img
-                src="tirzec-15-tirzepatida.jpg" alt="" class="w-full aspect-square object-contain" /></button></li>
-          <li><button type="button" data-thumb="hero-pipted.jpg" aria-label="Ver imagem 4"
+                src="assets/images/tirzec-15-tirzepatida.jpg" alt="" class="w-full aspect-square object-contain" /></button></li>
+          <li><button type="button" data-thumb="assets/images/hero-pipted.jpg" aria-label="Ver imagem 4"
               class="thumb w-full bg-white border-2 border-border-soft hover:border-slate-400 rounded-xl p-2"><img
-                src="hero-pipted.jpg" alt="" class="w-full aspect-square object-cover rounded-lg" /></button></li>
+                src="assets/images/hero-pipted.jpg" alt="" class="w-full aspect-square object-cover rounded-lg" /></button></li>
           <!-- FIM LOOP IMAGENS PRODUTO -->
         </ul>
       </div>
@@ -220,8 +223,8 @@
           </div>
         </fieldset>
 
-        <!-- Quantidade + Comprar -->
-        <form action="/carrinho/adicionar" method="post" class="mt-6 flex flex-col sm:flex-row gap-3">
+        <!-- PHP: Em produção alterar para method="post" action="/carrinho/adicionar.php" -->
+        <form action="carrinho.html" method="get" class="mt-6 flex flex-col sm:flex-row gap-3">
           <input type="hidden" name="produto_id" value="prod_trz_10" />
           <input type="hidden" name="variacao" id="variacao-input" value="10mg" />
           <div class="flex items-center border border-border-soft rounded-xl shrink-0 w-fit">
@@ -383,7 +386,7 @@
           <ol class="mt-6 space-y-3 text-slate-600 list-decimal pl-5 leading-relaxed">
             <li>Higienize a tampa do frasco e do diluente com álcool 70%.</li>
             <li>Aspire o volume indicado de água bacteriostática com seringa estéril.</li>
-            <li>Injete o diluente lentamente pela parede interna do frasco, sem agitar.</li>
+            <li>Introduza o diluente lentamente pela parede interna do frasco, sem agitar.</li>
             <li>Gire suavemente até a completa dissolução do pó liofilizado.</li>
           </ol>
           <div class="mt-8 flex gap-4 bg-sky-50 border border-sky-200 rounded-2xl p-6">
@@ -457,7 +460,7 @@
               <span
                 class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-full">99.2%
                 Pureza</span>
-              <img src="tg15-tirzepatida.jpg" alt="Semaglutida 5mg + Água BAC 3ml"
+              <img src="assets/images/tg15-tirzepatida.jpg" alt="Semaglutida 5mg + Água BAC 3ml"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             </a>
             <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
@@ -479,7 +482,7 @@
               <span
                 class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-full">-10%
                 OFF</span>
-              <img src="tirzedral-15.jpg" alt="BPC-157 5mg Liofilizado"
+              <img src="assets/images/tirzedral-15.jpg" alt="BPC-157 5mg Liofilizado"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             </a>
             <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
@@ -501,7 +504,7 @@
               <span
                 class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-full">99.4%
                 Pureza</span>
-              <img src="gluconex.jpg" alt="GHK-Cu 50mg Peptídeo de Cobre"
+              <img src="assets/images/gluconex.jpg" alt="GHK-Cu 50mg Peptídeo de Cobre"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             </a>
             <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
@@ -522,7 +525,7 @@
             <a href="produto.html" class="relative block bg-slate-50 aspect-square overflow-hidden">
               <span
                 class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Diluente</span>
-              <img src="t36-15-tirzepatida-4-viales.jpg" alt="Água Bacteriostática 10ml"
+              <img src="assets/images/t36-15-tirzepatida-4-viales.jpg" alt="Água Bacteriostática 10ml"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             </a>
             <div class="flex flex-col flex-1 p-5 border-t border-border-soft">

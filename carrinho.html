@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrinho | Peptid-PY</title>
+  <meta name="description" content="Revise os itens do seu carrinho na Peptid-PY." />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#0C1831', accent: '#DC2626', surface: '#F8FAFC', 'border-soft': '#E2E8F0' }, fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } }
+  </script>
+</head>
+<body class="bg-surface text-primary font-sans antialiased">
+
+  <!-- HEADER GLOBAL (PHP: include 'header.php') -->
+  <header class="bg-white border-b border-border-soft sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center" aria-label="Peptid-PY - Página inicial">
+        <img src="assets/images/logo-peptidpy.png" alt="Peptid-PY - Advanced Peptide Solutions" class="h-9 sm:h-10 w-auto object-contain" />
+      </a>
+      <div class="flex items-center gap-2 sm:gap-4">
+        <div class="relative group">
+          <a href="minha-conta.html" class="block p-2 rounded-lg hover:bg-surface transition-colors" aria-label="Minha conta" aria-haspopup="true">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0"/></svg>
+          </a>
+          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all absolute right-0 top-full pt-2 w-56 z-50">
+            <div class="bg-white border border-border-soft rounded-lg shadow-xl py-2 text-sm">
+              <a href="minha-conta.html" class="block px-4 py-2 hover:bg-surface">Minha Conta / Dados</a>
+              <a href="minha-conta.html#pedidos" class="block px-4 py-2 hover:bg-surface">Histórico de Pedidos</a>
+              <a href="login.html" class="block px-4 py-2 hover:bg-surface">Entrar / Cadastrar</a>
+              <hr class="my-2 border-border-soft" />
+              <!-- PHP: LINK /logout.php -->
+              <a href="login.html" class="block px-4 py-2 text-accent hover:bg-red-50 font-medium">Sair da Conta</a>
+            </div>
+          </div>
+        </div>
+        <a href="carrinho.html" class="relative p-2 rounded-lg bg-surface" aria-label="Carrinho">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></svg>
+          <span class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-accent text-white text-[11px] font-bold flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold tracking-tight">Meu Carrinho</h1>
+    <p class="text-sm text-slate-500 mt-1">2 itens selecionados</p>
+
+    <div class="mt-8 grid lg:grid-cols-3 gap-8">
+      <!-- LISTA DE ITENS -->
+      <section class="lg:col-span-2 space-y-4" aria-label="Itens do carrinho">
+        <!-- PHP: INÍCIO LOOP ITENS DO CARRINHO (foreach $_SESSION['carrinho'] as $item) -->
+        <article class="bg-white border border-border-soft rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row gap-5 item" data-unit="1096.50">
+          <img src="assets/images/lipoless-15-tirzepatida.jpg" alt="Tirzepatida 10mg + Água BAC 5ml" class="w-full sm:w-28 aspect-square object-cover rounded-lg border border-border-soft" />
+          <div class="flex-1 flex flex-col">
+            <div class="flex justify-between gap-4">
+              <div>
+                <h2 class="font-semibold leading-snug"><a href="produto.html" class="hover:text-accent">Tirzepatida 10mg + Água BAC 5ml</a></h2>
+                <p class="text-xs text-slate-500 mt-1">Dosagem: <strong class="text-primary">10mg</strong> · SKU: PEP-TRZ-10MG</p>
+              </div>
+              <!-- PHP: LINK /carrinho/remover.php?id={ID_ITEM} -->
+              <button type="button" class="remover text-slate-400 hover:text-accent self-start" aria-label="Remover item">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12M9 7V4h6v3M8 7l1 13h6l1-13"/></svg>
+              </button>
+            </div>
+            <div class="mt-auto pt-4 flex flex-wrap items-end justify-between gap-4">
+              <div class="flex items-center border border-border-soft rounded-lg">
+                <button type="button" class="menos w-10 h-10 text-lg hover:text-accent" aria-label="Diminuir">&minus;</button>
+                <input type="number" value="1" min="1" max="10" class="qtd w-10 text-center font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" aria-label="Quantidade" />
+                <button type="button" class="mais w-10 h-10 text-lg hover:text-accent" aria-label="Aumentar">+</button>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-slate-500">Unitário: R$ 1.096,50</p>
+                <p class="text-lg font-bold">Subtotal: <span class="subtotal">R$ 1.096,50</span></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white border border-border-soft rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row gap-5 item" data-unit="342.00">
+          <img src="assets/images/gluconex.jpg" alt="GHK-Cu 50mg Peptídeo de Cobre" class="w-full sm:w-28 aspect-square object-cover rounded-lg border border-border-soft" />
+          <div class="flex-1 flex flex-col">
+            <div class="flex justify-between gap-4">
+              <div>
+                <h2 class="font-semibold leading-snug"><a href="produto.html" class="hover:text-accent">GHK-Cu 50mg Peptídeo de Cobre</a></h2>
+                <p class="text-xs text-slate-500 mt-1">Dosagem: <strong class="text-primary">50mg</strong> · SKU: PEP-GHK-50MG</p>
+              </div>
+              <button type="button" class="remover text-slate-400 hover:text-accent self-start" aria-label="Remover item">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12M9 7V4h6v3M8 7l1 13h6l1-13"/></svg>
+              </button>
+            </div>
+            <div class="mt-auto pt-4 flex flex-wrap items-end justify-between gap-4">
+              <div class="flex items-center border border-border-soft rounded-lg">
+                <button type="button" class="menos w-10 h-10 text-lg hover:text-accent" aria-label="Diminuir">&minus;</button>
+                <input type="number" value="1" min="1" max="10" class="qtd w-10 text-center font-semibold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none" aria-label="Quantidade" />
+                <button type="button" class="mais w-10 h-10 text-lg hover:text-accent" aria-label="Aumentar">+</button>
+              </div>
+              <div class="text-right">
+                <p class="text-xs text-slate-500">Unitário: R$ 342,00</p>
+                <p class="text-lg font-bold">Subtotal: <span class="subtotal">R$ 342,00</span></p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <!-- PHP: FIM LOOP ITENS DO CARRINHO -->
+
+        <a href="produtos.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent">&larr; Continuar comprando</a>
+      </section>
+
+      <!-- RESUMO -->
+      <aside class="space-y-4 lg:sticky lg:top-24 self-start" aria-label="Resumo do pedido">
+        <div class="bg-white border border-border-soft rounded-lg p-5">
+          <h2 class="font-bold">Frete e cupom</h2>
+          <!-- PHP: FORM POST /carrinho/frete.php -->
+          <form id="form-cep" class="mt-3 flex gap-2">
+            <input id="cep" type="text" inputmode="numeric" maxlength="9" placeholder="CEP" aria-label="CEP" class="flex-1 min-w-0 border border-border-soft rounded-lg px-3 py-2 text-sm outline-none focus:border-primary" />
+            <button class="px-4 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-[#13254a]">Calcular</button>
+          </form>
+          <p id="cep-res" class="hidden mt-2 text-xs text-green-700 font-medium">Envio refrigerado expresso: R$ 29,90 (2 a 4 dias úteis)</p>
+          <!-- PHP: FORM POST /carrinho/cupom.php -->
+          <form id="form-cupom" class="mt-4 flex gap-2">
+            <input type="text" placeholder="Cupom de desconto" aria-label="Cupom" class="flex-1 min-w-0 border border-border-soft rounded-lg px-3 py-2 text-sm outline-none focus:border-primary uppercase" />
+            <button class="px-4 rounded-lg border border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-white transition-colors">Aplicar</button>
+          </form>
+        </div>
+
+        <div class="bg-white border border-border-soft rounded-lg p-5">
+          <h2 class="font-bold">Resumo</h2>
+          <!-- PHP: EXIBIR TOTAIS (calculados no servidor) -->
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex justify-between"><dt class="text-slate-500">Subtotal</dt><dd id="r-sub" class="font-medium">R$ 1.438,50</dd></div>
+            <div class="flex justify-between"><dt class="text-slate-500">Frete</dt><dd class="font-medium">R$ 29,90</dd></div>
+            <div class="flex justify-between text-green-700"><dt>Desconto Pix (-5%)</dt><dd id="r-pix" class="font-medium">- R$ 71,93</dd></div>
+            <div class="flex justify-between border-t border-border-soft pt-3 text-lg font-bold"><dt>Total</dt><dd id="r-total">R$ 1.396,47</dd></div>
+          </dl>
+          <p class="text-xs text-slate-500 mt-2">ou 10x de R$ 146,84 sem juros no cartão</p>
+          <a href="checkout.html" class="mt-5 block text-center bg-accent hover:bg-red-700 text-white font-bold py-3.5 rounded-lg transition-colors">Avançar para Pagamento</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="mt-10 bg-primary text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-6">&copy; 2026 Peptid-PY — Advanced Peptide Solutions. CNPJ 45.892.104/0001-33</div>
+  </footer>
+
+  <script>
+    (function () {
+      var fmt = function (v) { return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+      function recalc() {
+        var sub = 0;
+        document.querySelectorAll('.item').forEach(function (it) {
+          var q = parseInt(it.querySelector('.qtd').value, 10) || 1;
+          var s = q * parseFloat(it.dataset.unit);
+          it.querySelector('.subtotal').textContent = fmt(s);
+          sub += s;
+        });
+        var frete = 29.90, pix = sub * 0.05;
+        document.getElementById('r-sub').textContent = fmt(sub);
+        document.getElementById('r-pix').textContent = '- ' + fmt(pix);
+        document.getElementById('r-total').textContent = fmt(sub + frete - pix);
+      }
+      document.querySelectorAll('.item').forEach(function (it) {
+        var q = it.querySelector('.qtd');
+        it.querySelector('.menos').onclick = function () { q.value = Math.max(1, q.value - 1); recalc(); };
+        it.querySelector('.mais').onclick = function () { q.value = Math.min(10, +q.value + 1); recalc(); };
+        q.onchange = recalc;
+        it.querySelector('.remover').onclick = function () { it.remove(); recalc(); };
+      });
+      document.getElementById('cep').addEventListener('input', function (e) {
+        var v = e.target.value.replace(/\D/g, '').slice(0, 8);
+        e.target.value = v.length > 5 ? v.slice(0, 5) + '-' + v.slice(5) : v;
+      });
+      document.getElementById('form-cep').onsubmit = function (e) { e.preventDefault(); document.getElementById('cep-res').classList.remove('hidden'); };
+      document.getElementById('form-cupom').onsubmit = function (e) { e.preventDefault(); };
+      recalc();
+    })();
+  </script>
+</body>
+</html>

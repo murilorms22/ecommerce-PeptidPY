@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar ou Criar Conta | Peptid-PY</title>
+  <meta name="description" content="Acesse sua conta ou cadastre-se na Peptid-PY." />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#0C1831', accent: '#DC2626', surface: '#F8FAFC', 'border-soft': '#E2E8F0' }, fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } }
+  </script>
+</head>
+<body class="bg-surface text-primary font-sans antialiased min-h-screen flex items-center justify-center px-4 py-10">
+  <main class="w-full max-w-md">
+    <a href="index.html" class="flex items-center justify-center" aria-label="Peptid-PY - Página inicial">
+      <img src="assets/images/logo-peptidpy.png" alt="Peptid-PY - Advanced Peptide Solutions" class="h-12 w-auto object-contain" />
+    </a>
+
+    <div class="mt-8 bg-white border border-border-soft rounded-lg shadow-sm p-6 sm:p-8">
+      <h1 class="sr-only">Acesso à conta</h1>
+      <div role="tablist" class="grid grid-cols-2 bg-surface border border-border-soft rounded-lg p-1 text-sm font-semibold">
+        <button role="tab" id="tab-login" aria-selected="true" class="tab rounded-md py-2 bg-primary text-white transition-colors">Já tenho conta</button>
+        <button role="tab" id="tab-cadastro" aria-selected="false" class="tab rounded-md py-2 text-slate-600 transition-colors">Criar Conta</button>
+      </div>
+
+      <!-- PHP / BACK-END: Em produção, alterar para method="POST" action="/login.php" e desativar o listener JS abaixo -->
+      <form id="f-login" action="minha-conta.html" method="get" class="mt-6 space-y-4 text-sm">
+        <label class="block">E-mail<input type="email" name="email" required value="carlos.menezes@email.com" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+        <label class="block">Senha<input type="password" name="senha" required value="12345678" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+        <div class="flex items-center justify-between text-xs">
+          <label class="flex items-center gap-2"><input type="checkbox" name="lembrar" class="accent-[#0C1831]" checked /> Lembrar-me</label>
+          <a href="#" class="text-accent font-medium hover:underline">Esqueci minha senha</a>
+        </div>
+        <button type="submit" class="w-full bg-accent hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors">Entrar</button>
+      </form>
+
+      <!-- PHP / BACK-END: Em produção, alterar para method="POST" action="/cadastro.php" e desativar o listener JS abaixo -->
+      <form id="f-cadastro" action="minha-conta.html" method="get" class="hidden mt-6 space-y-4 text-sm">
+        <label class="block">Nome completo<input name="nome" required class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" placeholder="Seu nome" /></label>
+        <label class="block">E-mail<input type="email" name="email" required class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" placeholder="voce@email.com" /></label>
+        <label class="block">WhatsApp<input name="whatsapp" required class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" placeholder="(11) 99999-9999" /></label>
+        <label class="block">Senha<input type="password" name="senha" required minlength="8" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" placeholder="Mínimo 8 caracteres" /></label>
+        <button type="submit" class="w-full bg-accent hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors">Criar Conta</button>
+      </form>
+    </div>
+
+    <p class="mt-6 text-center text-sm"><a href="index.html" class="text-slate-500 hover:text-accent">&larr; Voltar para a Home</a></p>
+  </main>
+
+  <script>
+    var abas = { 'tab-login': 'f-login', 'tab-cadastro': 'f-cadastro' };
+    document.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        document.querySelectorAll('.tab').forEach(function (o) {
+          var on = o === t;
+          o.setAttribute('aria-selected', on);
+          o.classList.toggle('bg-primary', on); o.classList.toggle('text-white', on);
+          o.classList.toggle('text-slate-600', !on);
+          document.getElementById(abas[o.id]).classList.toggle('hidden', !on);
+        });
+      });
+    });
+  </script>
+
+  <!-- ==========================================================================
+       AVISO AO DESENVOLVEDOR BACK-END (PHP):
+       Os listeners abaixo servem exclusivamente para simulação visual de navegação no Live Server.
+       Ao integrar com os endpoints reais (/login.php e /cadastro.php) e sessões do PHP ($_SESSION),
+       REMOVA ou DESATIVE estes listeners 'submit' para permitir o envio real dos formulários via POST.
+       ========================================================================== -->
+  <script>
+    const formLogin = document.getElementById('f-login');
+    if (formLogin) {
+      formLogin.addEventListener('submit', function (e) {
+        e.preventDefault();
+        window.location.href = 'minha-conta.html';
+      });
+    }
+
+    const formCadastro = document.getElementById('f-cadastro');
+    if (formCadastro) {
+      formCadastro.addEventListener('submit', function (e) {
+        e.preventDefault();
+        window.location.href = 'minha-conta.html';
+      });
+    }
+  </script>
+</body>
+</html>

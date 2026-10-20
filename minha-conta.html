@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta | Peptid-PY</title>
+  <meta name="description" content="Gerencie seus dados, pedidos e endereços na Peptid-PY." />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#0C1831', accent: '#DC2626', surface: '#F8FAFC', 'border-soft': '#E2E8F0' }, fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } }
+  </script>
+</head>
+<body class="bg-surface text-primary font-sans antialiased">
+
+  <!-- HEADER GLOBAL (PHP: include 'header.php') -->
+  <header class="bg-white border-b border-border-soft sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center" aria-label="Peptid-PY - Página inicial">
+        <img src="assets/images/logo-peptidpy.png" alt="Peptid-PY - Advanced Peptide Solutions" class="h-9 sm:h-10 w-auto object-contain" />
+      </a>
+      <div class="flex items-center gap-2 sm:gap-4">
+        <div class="relative group">
+          <a href="minha-conta.html" class="block p-2 rounded-lg bg-surface transition-colors" aria-label="Minha conta" aria-haspopup="true">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0"/></svg>
+          </a>
+          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all absolute right-0 top-full pt-2 w-56 z-50">
+            <div class="bg-white border border-border-soft rounded-lg shadow-xl py-2 text-sm">
+              <a href="minha-conta.html" class="block px-4 py-2 hover:bg-surface">Minha Conta / Dados</a>
+              <a href="minha-conta.html#pedidos" class="block px-4 py-2 hover:bg-surface">Histórico de Pedidos</a>
+              <a href="login.html" class="block px-4 py-2 hover:bg-surface">Entrar / Cadastrar</a>
+              <hr class="my-2 border-border-soft" />
+              <!-- PHP: LINK /logout.php -->
+              <a href="login.html" class="block px-4 py-2 text-accent hover:bg-red-50 font-medium">Sair da Conta</a>
+            </div>
+          </div>
+        </div>
+        <a href="carrinho.html" class="relative p-2 rounded-lg hover:bg-surface" aria-label="Carrinho">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></svg>
+          <span class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-accent text-white text-[11px] font-bold flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold tracking-tight">Minha Conta</h1>
+    <p class="text-sm text-slate-500 mt-1">Olá, Carlos! Gerencie seus dados e acompanhe seus pedidos.</p>
+
+    <div class="mt-8 grid lg:grid-cols-4 gap-8">
+      <!-- MENU LATERAL -->
+      <nav aria-label="Menu da conta" class="bg-white border border-border-soft rounded-lg p-2 self-start text-sm font-medium flex lg:flex-col overflow-x-auto">
+        <a href="#dados" data-aba="dados" class="menu flex-1 lg:flex-none whitespace-nowrap px-4 py-3 rounded-md bg-primary text-white">Meus Dados</a>
+        <a href="#pedidos" data-aba="pedidos" class="menu flex-1 lg:flex-none whitespace-nowrap px-4 py-3 rounded-md hover:bg-surface">Meus Pedidos</a>
+        <a href="#enderecos" data-aba="enderecos" class="menu flex-1 lg:flex-none whitespace-nowrap px-4 py-3 rounded-md hover:bg-surface">Endereços Salvos</a>
+        <!-- PHP: LINK /logout.php -->
+        <a href="login.html" class="flex-1 lg:flex-none whitespace-nowrap px-4 py-3 rounded-md text-accent hover:bg-red-50">Sair</a>
+      </nav>
+
+      <div class="lg:col-span-3">
+        <section id="dados" class="painel bg-white border border-border-soft rounded-lg p-6">
+          <h2 class="text-xl font-bold">Meus Dados</h2>
+          <!-- PHP / BACK-END: Em produção, alterar para method="POST" action="/conta/atualizar.php" e desativar o listener JS abaixo -->
+          <form id="f-dados" action="minha-conta.html" method="get" class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+            <label class="sm:col-span-2 block">Nome completo<input name="nome" value="Carlos Eduardo Menezes" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <label class="block">E-mail<input type="email" name="email" value="carlos.menezes@email.com" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <label class="block">WhatsApp<input name="whatsapp" value="(11) 99123-4567" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <label class="block">CPF<input name="cpf" value="123.456.789-09" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <div class="sm:col-span-2 pt-4 border-t border-border-soft"><h3 class="font-semibold">Alterar senha</h3></div>
+            <label class="block">Nova senha<input type="password" name="nova_senha" placeholder="••••••••" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <label class="block">Confirmar nova senha<input type="password" name="confirma_senha" placeholder="••••••••" class="mt-1 w-full border border-border-soft rounded-lg px-3 py-2.5 outline-none focus:border-primary" /></label>
+            <div class="sm:col-span-2 flex items-center gap-4">
+              <button type="submit" class="px-8 py-3 bg-accent hover:bg-red-700 text-white font-bold rounded-lg transition-colors">Salvar Alterações</button>
+              <span id="msg-salvo" class="hidden text-xs text-green-700 font-semibold">Alterações salvas com sucesso!</span>
+            </div>
+          </form>
+        </section>
+
+        <!-- ABA: MEUS PEDIDOS -->
+        <section id="pedidos" class="painel hidden space-y-4">
+          <h2 class="text-xl font-bold">Meus Pedidos</h2>
+          <!-- PHP: LOOP HISTÓRICO DE PEDIDOS (foreach $pedidos as $p) -->
+          <article class="bg-white border border-border-soft rounded-lg p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
+              <div><p class="font-bold">#PY-10482</p><p class="text-xs text-slate-500">20/10/2026</p></div>
+              <span class="text-xs font-semibold bg-amber-100 text-amber-800 px-3 py-1 rounded-md">Aguardando Pagamento</span>
+              <p class="font-bold text-lg">R$ 1.396,47</p>
+            </div>
+            <ul class="mt-4 pt-4 border-t border-border-soft space-y-3 text-sm">
+              <li class="flex items-center gap-3"><img src="assets/images/lipoless-15-tirzepatida.jpg" alt="" class="w-12 h-12 rounded-lg object-cover border border-border-soft" /><span class="flex-1">Tirzepatida 10mg + Água BAC 5ml <span class="text-slate-500">× 1</span></span></li>
+              <li class="flex items-center gap-3"><img src="assets/images/gluconex.jpg" alt="" class="w-12 h-12 rounded-lg object-cover border border-border-soft" /><span class="flex-1">GHK-Cu 50mg Peptídeo de Cobre <span class="text-slate-500">× 1</span></span></li>
+            </ul>
+          </article>
+          <article class="bg-white border border-border-soft rounded-lg p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
+              <div><p class="font-bold">#PY-10311</p><p class="text-xs text-slate-500">02/10/2026</p></div>
+              <span class="text-xs font-semibold bg-sky-100 text-sky-800 px-3 py-1 rounded-md">Em Transporte</span>
+              <p class="font-bold text-lg">R$ 819,90</p>
+            </div>
+            <ul class="mt-4 pt-4 border-t border-border-soft space-y-3 text-sm">
+              <li class="flex items-center gap-3"><img src="assets/images/tg15-tirzepatida.jpg" alt="" class="w-12 h-12 rounded-lg object-cover border border-border-soft" /><span class="flex-1">Semaglutida 5mg + Água BAC 3ml <span class="text-slate-500">× 1</span></span></li>
+            </ul>
+          </article>
+          <article class="bg-white border border-border-soft rounded-lg p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
+              <div><p class="font-bold">#PY-09876</p><p class="text-xs text-slate-500">14/09/2026</p></div>
+              <span class="text-xs font-semibold bg-green-100 text-green-800 px-3 py-1 rounded-md">Entregue</span>
+              <p class="font-bold text-lg">R$ 1.125,90</p>
+            </div>
+            <ul class="mt-4 pt-4 border-t border-border-soft space-y-3 text-sm">
+              <li class="flex items-center gap-3"><img src="assets/images/tirzec-15-tirzepatida.jpg" alt="" class="w-12 h-12 rounded-lg object-cover border border-border-soft" /><span class="flex-1">Tirzepatida 15mg <span class="text-slate-500">× 1</span></span></li>
+            </ul>
+          </article>
+          <!-- PHP: FIM LOOP HISTÓRICO DE PEDIDOS -->
+        </section>
+
+        <!-- ABA: ENDEREÇOS -->
+        <section id="enderecos" class="painel hidden">
+          <h2 class="text-xl font-bold">Endereços Salvos</h2>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4 text-sm">
+            <!-- PHP: LOOP ENDEREÇOS DO USUÁRIO -->
+            <div class="bg-white border-2 border-primary rounded-lg p-5"><span class="text-[11px] font-bold bg-primary text-white px-2 py-0.5 rounded">PRINCIPAL</span><p class="mt-3 text-slate-600">Avenida Paulista, 1578 — Bela Vista<br />São Paulo/SP — CEP 01310-100</p></div>
+            <div class="bg-white border border-border-soft rounded-lg p-5"><span class="text-[11px] font-bold bg-surface border border-border-soft px-2 py-0.5 rounded">TRABALHO</span><p class="mt-3 text-slate-600">Rua Funchal, 411 — Vila Olímpia<br />São Paulo/SP — CEP 04551-060</p></div>
+          </div>
+          <button class="mt-4 px-5 py-2.5 border border-primary text-primary font-semibold rounded-lg text-sm hover:bg-primary hover:text-white transition-colors">+ Adicionar endereço</button>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-10 bg-primary text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-6">&copy; 2026 Peptid-PY — Advanced Peptide Solutions. CNPJ 45.892.104/0001-33</div>
+  </footer>
+
+  <script>
+    function abrir(id) {
+      if (!document.getElementById(id)) id = 'dados';
+      document.querySelectorAll('.painel').forEach(function (p) { p.classList.toggle('hidden', p.id !== id); });
+      document.querySelectorAll('.menu').forEach(function (m) {
+        var on = m.dataset.aba === id;
+        m.classList.toggle('bg-primary', on); m.classList.toggle('text-white', on); m.classList.toggle('hover:bg-surface', !on);
+      });
+    }
+    document.querySelectorAll('.menu').forEach(function (m) {
+      m.addEventListener('click', function (e) { e.preventDefault(); history.replaceState(null, '', '#' + m.dataset.aba); abrir(m.dataset.aba); });
+    });
+    window.addEventListener('hashchange', function () { abrir(location.hash.slice(1)); });
+    abrir(location.hash.slice(1));
+  </script>
+
+  <!-- ==========================================================================
+       AVISO AO DESENVOLVEDOR BACK-END (PHP):
+       O script abaixo serve exclusivamente para simulação visual de feedback no Live Server.
+       Ao integrar com a rota real de atualização de perfil (/conta/atualizar.php),
+       REMOVA ou DESATIVE este listener 'submit' para permitir que o formulário envie os dados via POST.
+       ========================================================================== -->
+  <script>
+    const formDados = document.getElementById('f-dados');
+    if (formDados) {
+      formDados.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('msg-salvo');
+        if (msg) {
+          msg.classList.remove('hidden');
+          setTimeout(function () { msg.classList.add('hidden'); }, 3000);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

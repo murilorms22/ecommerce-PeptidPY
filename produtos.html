@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Produtos & Peptídeos | Peptid-PY</title>
+  <meta name="description"
+    content="Explore nosso catálogo completo de peptídeos laboratoriais liofilizados de alta pureza, fármacos e diluentes com laudos HPLC." />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0C1831',
+            accent: '#DC2626',
+            surface: '#F8FAFC',
+            'border-soft': '#E2E8F0',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-surface text-primary font-sans antialiased flex flex-col min-h-screen">
+
+  <!-- ============================================================
+       CABEÇALHO GLOBAL / NAVBAR
+  ============================================================= -->
+  <header class="bg-white border-b border-border-soft sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <!-- Logo da Marca -->
+      <a href="index.html" class="flex items-center shrink-0" aria-label="Peptid-PY - Página inicial">
+        <img src="assets/images/logo-peptidpy.png" alt="Peptid-PY - Advanced Peptide Solutions"
+          class="h-10 sm:h-11 w-auto object-contain" />
+      </a>
+
+      <!-- Formulário de Busca na Navbar (Sem o select 'Todas', redireciona para produtos.html com parâmetro de busca) -->
+      <!-- PHP: action="produtos.php" ou controller de busca -->
+      <form action="produtos.html" method="get" role="search"
+        class="order-3 lg:order-none w-full lg:flex-1 flex items-stretch border border-border-soft rounded-full overflow-hidden focus-within:border-primary transition-colors">
+        <label for="navbar-busca-termo" class="sr-only">Buscar produtos</label>
+        <input id="navbar-busca-termo" name="busca" type="search"
+          placeholder="Buscar peptídeos, fármacos, diluentes..."
+          class="flex-1 px-5 py-2.5 text-sm outline-none min-w-0 bg-transparent" />
+        <button type="submit" class="px-5 bg-primary text-white hover:bg-accent transition-colors" aria-label="Buscar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path stroke-linecap="round" d="M20 20l-3.5-3.5" />
+          </svg>
+        </button>
+      </form>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="ml-auto lg:ml-0 flex items-center gap-2 sm:gap-4 shrink-0">
+        <a href="https://wa.me/5511991234567" target="_blank" rel="noopener"
+          class="hidden md:flex items-center gap-2 text-sm font-medium border border-border-soft rounded-xl px-4 py-2 hover:border-green-600 hover:text-green-700 transition-colors">
+          <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z" />
+          </svg>
+          Atendimento
+        </a>
+
+        <!-- Dropdown Conta do Usuário -->
+        <div class="relative group">
+          <a href="minha-conta.html" class="block p-2 rounded-xl hover:bg-surface focus:bg-surface transition-colors"
+            aria-label="Minha conta" aria-haspopup="true">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+              aria-hidden="true">
+              <circle cx="12" cy="8" r="4" />
+              <path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0" />
+            </svg>
+          </a>
+          <div
+            class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all absolute right-0 top-full pt-2 w-56 z-50">
+            <div class="bg-white border border-border-soft rounded-lg shadow-xl py-2 text-sm">
+              <a href="minha-conta.html" class="block px-4 py-2 hover:bg-surface">Minha Conta / Dados</a>
+              <a href="minha-conta.html#pedidos" class="block px-4 py-2 hover:bg-surface">Histórico de Pedidos</a>
+              <a href="login.html" class="block px-4 py-2 hover:bg-surface">Entrar / Cadastrar</a>
+              <hr class="my-2 border-border-soft" />
+              <a href="login.html" class="block px-4 py-2 text-accent bg-red-50/0 hover:bg-red-50 font-medium">Sair da
+                Conta</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carrinho com Badge -->
+        <a href="carrinho.html" class="relative p-2 rounded-xl hover:bg-surface transition-colors"
+          aria-label="Carrinho">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6" />
+            <circle cx="10" cy="20.5" r="1" />
+            <circle cx="17" cy="20.5" r="1" />
+          </svg>
+          <span
+            class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-accent text-white text-[11px] font-bold flex items-center justify-center">2</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Barra de Categorias da Navbar -->
+    <nav aria-label="Categorias" class="border-t border-border-soft bg-white">
+      <ul
+        class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-6 lg:gap-10 overflow-x-auto text-sm font-semibold whitespace-nowrap">
+        <li>
+          <a href="produtos.html"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="todas">Todos os Produtos</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=peptideos"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="peptideos">Peptídeos</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=emagrecimento"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="emagrecimento">Emagrecimento</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=estetica"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="estetica">Estética &amp; Anti-Aging</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=muscular"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="muscular">Ganho Muscular</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=recuperacao"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="recuperacao">Recuperação</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=diluentes"
+            class="nav-cat-link block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all"
+            data-cat="diluentes">Soluções Diluentes</a>
+        </li>
+        <li>
+          <a href="produtos.html?categoria=ofertas"
+            class="nav-cat-link block py-3 text-accent font-bold hover:opacity-80 transition-opacity"
+            data-cat="ofertas">Ofertas</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <!-- ============================================================
+         BREADCRUMB & CABEÇALHO DA PÁGINA
+    ============================================================= -->
+    <div class="bg-white border-b border-border-soft">
+      <div class="max-w-7xl mx-auto px-4 py-8">
+        <nav aria-label="Breadcrumb" class="mb-4">
+          <ol class="flex items-center gap-2 text-xs text-slate-500">
+            <li><a href="index.html" class="hover:text-primary transition-colors">Início</a></li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="text-primary font-semibold">Produtos</li>
+          </ol>
+        </nav>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-primary">Catálogo de Produtos</h1>
+            <p class="text-sm text-slate-500 mt-1.5 max-w-2xl">
+              Linha completa de peptídeos laboratoriais liofilizados, canetas e soluções diluentes com laudo HPLC por lote.
+            </p>
+          </div>
+          <!-- Contador Dinâmico de Produtos -->
+          <div class="text-sm text-slate-500 whitespace-nowrap self-start md:self-end">
+            <span id="contador-produtos" class="font-medium text-slate-700">Carregando catálogo...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         BARRA / LINHA DE FILTROS & BUSCA
+    ============================================================= -->
+    <section class="max-w-7xl mx-auto px-4 pt-6 pb-2">
+      <div class="bg-white border border-border-soft rounded-2xl p-4 sm:p-5 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-center">
+          
+          <!-- Campo de Busca por Texto -->
+          <div class="md:col-span-5 relative">
+            <label for="filtro-busca" class="sr-only">Pesquisar produto</label>
+            <div class="relative flex items-center">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path stroke-linecap="round" d="M20 20l-3.5-3.5" />
+              </svg>
+              <input id="filtro-busca" type="search" placeholder="Buscar por nome, dosagem ou princípio ativo..."
+                class="w-full pl-10 pr-9 py-2.5 text-sm bg-surface border border-border-soft rounded-xl outline-none focus:border-primary focus:bg-white transition-all" />
+              <button type="button" id="btn-limpar-busca" class="hidden absolute right-3 text-slate-400 hover:text-slate-600 text-sm font-bold p-1" aria-label="Limpar busca">
+                &times;
+              </button>
+            </div>
+          </div>
+
+          <!-- Filtro com Select de Categoria -->
+          <div class="md:col-span-4">
+            <label for="filtro-categoria" class="sr-only">Filtrar por Categoria</label>
+            <div class="relative">
+              <select id="filtro-categoria"
+                class="w-full appearance-none bg-surface border border-border-soft rounded-xl px-4 py-2.5 text-sm font-medium text-slate-700 outline-none focus:border-primary focus:bg-white transition-all cursor-pointer">
+                <option value="todas">Todas as Categorias</option>
+                <option value="peptideos">Peptídeos</option>
+                <option value="emagrecimento">Emagrecimento</option>
+                <option value="estetica">Estética &amp; Anti-Aging</option>
+                <option value="muscular">Ganho Muscular</option>
+                <option value="recuperacao">Recuperação &amp; Regeneração</option>
+                <option value="diluentes">Soluções Diluentes</option>
+                <option value="ofertas">Ofertas &amp; Descontos</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtro de Ordenação -->
+          <div class="md:col-span-3">
+            <label for="filtro-ordenacao" class="sr-only">Ordenar produtos</label>
+            <div class="relative">
+              <select id="filtro-ordenacao"
+                class="w-full appearance-none bg-surface border border-border-soft rounded-xl px-4 py-2.5 text-sm font-medium text-slate-700 outline-none focus:border-primary focus:bg-white transition-all cursor-pointer">
+                <option value="relevancia">Mais Relevantes</option>
+                <option value="menor-preco">Menor Preço</option>
+                <option value="maior-preco">Maior Preço</option>
+                <option value="nome">Nome (A a Z)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pílula de Filtros Ativos / Botão Limpar Tudo -->
+        <div id="barra-filtros-ativos" class="hidden mt-3 pt-3 border-t border-border-soft flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-slate-500 font-medium">Filtros aplicados:</span>
+          <span id="chip-busca" class="hidden inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-primary rounded-full font-medium">
+            <span>Busca: "<strong id="termo-chip-busca"></strong>"</span>
+            <button type="button" id="remover-chip-busca" class="hover:text-accent font-bold" aria-label="Remover filtro de busca">&times;</button>
+          </span>
+          <span id="chip-categoria" class="hidden inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 text-accent rounded-full font-medium">
+            <span>Categoria: <strong id="termo-chip-categoria"></strong></span>
+            <button type="button" id="remover-chip-categoria" class="hover:text-red-800 font-bold" aria-label="Remover filtro de categoria">&times;</button>
+          </span>
+          <button type="button" id="btn-limpar-todos-filtros" class="text-xs font-semibold text-slate-500 hover:text-accent underline ml-auto">
+            Limpar todos os filtros
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         GRID DE PRODUTOS
+    ============================================================= -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+      
+      <!-- Container do Grid de Produtos -->
+      <!-- PHP: LOOP DE PRODUTOS (foreach $produtos as $produto) -->
+      <div id="grid-produtos" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        
+        <!-- PRODUTO 1: Tirzepatida 10mg + Água BAC -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Tirzepatida 10mg + Água BAC 5ml"
+          data-substancia="Tirzepatida"
+          data-sku="PY-TRZ-10M"
+          data-categorias="peptideos emagrecimento ofertas"
+          data-preco="1096.50">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              -15% OFF
+            </span>
+            <img src="assets/images/lipoless-15-tirzepatida.jpg" alt="Tirzepatida 10mg + Água BAC 5ml"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Emagrecimento</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Tirzepatida 10mg + Água BAC 5ml</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 1.290,00</span>
+              <p class="text-xl font-bold text-primary">R$ 1.096,50 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 2: Semaglutida 5mg + Água BAC -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Semaglutida 5mg + Água BAC 3ml"
+          data-substancia="Semaglutida"
+          data-sku="PY-SMG-05M"
+          data-categorias="peptideos emagrecimento"
+          data-preco="790.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              99.2% Pureza
+            </span>
+            <img src="assets/images/tg15-tirzepatida.jpg" alt="Semaglutida 5mg + Água BAC 3ml"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Emagrecimento</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Semaglutida 5mg + Água BAC 3ml</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 890,00</span>
+              <p class="text-xl font-bold text-primary">R$ 790,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 3: BPC-157 5mg Liofilizado -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="BPC-157 5mg Liofilizado"
+          data-substancia="BPC-157"
+          data-sku="PY-BPC-05M"
+          data-categorias="peptideos recuperacao ofertas"
+          data-preco="378.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              -10% OFF
+            </span>
+            <img src="assets/images/tirzedral-15.jpg" alt="BPC-157 5mg Liofilizado"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Recuperação</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">BPC-157 5mg Liofilizado</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 420,00</span>
+              <p class="text-xl font-bold text-primary">R$ 378,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 4: Tirzec 15mg (Kit 4 Viales) -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Tirzec 15mg (Kit 4 Viales)"
+          data-substancia="Tirzepatida"
+          data-sku="PY-TRZ-15K4"
+          data-categorias="peptideos muscular emagrecimento ofertas"
+          data-preco="1232.50">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              99.7% Pureza
+            </span>
+            <img src="assets/images/tirzec-15-4-viales.jpg" alt="Tirzec 15mg (Kit 4 Viales)"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Ganho Muscular</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Tirzec 15mg (Kit 4 Viales)</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 1.450,00</span>
+              <p class="text-xl font-bold text-primary">R$ 1.232,50 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 5: GHK-Cu 50mg Peptídeo de Cobre -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="GHK-Cu 50mg Peptídeo de Cobre"
+          data-substancia="GHK-Cu"
+          data-sku="PY-GHK-50M"
+          data-categorias="peptideos estetica"
+          data-preco="342.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              99.4% Pureza
+            </span>
+            <img src="assets/images/gluconex.jpg" alt="GHK-Cu 50mg Peptídeo de Cobre"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Anti-Aging</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">GHK-Cu 50mg Peptídeo de Cobre</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 380,00</span>
+              <p class="text-xl font-bold text-primary">R$ 342,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 6: Melanotan II 10mg -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Melanotan II 10mg"
+          data-substancia="Melanotan"
+          data-sku="PY-MLN-10M"
+          data-categorias="peptideos estetica ofertas"
+          data-preco="248.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              -20% OFF
+            </span>
+            <img src="assets/images/lipoland.jpg" alt="Melanotan II 10mg"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Estética</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Melanotan II 10mg</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 310,00</span>
+              <p class="text-xl font-bold text-primary">R$ 248,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 7: Ipamorelin 5mg Liofilizado -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Ipamorelin 5mg Liofilizado"
+          data-substancia="Ipamorelin"
+          data-sku="PY-IPA-05M"
+          data-categorias="peptideos muscular"
+          data-preco="315.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              99.1% Pureza
+            </span>
+            <img src="assets/images/lipoless-md-15-tirzepatida.jpg" alt="Ipamorelin 5mg Liofilizado"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Ganho Muscular</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Ipamorelin 5mg Liofilizado</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 350,00</span>
+              <p class="text-xl font-bold text-primary">R$ 315,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 8: Água Bacteriostática 10ml -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Água Bacteriostática 10ml"
+          data-substancia="Água Bacteriostática BAC"
+          data-sku="PY-BAC-10M"
+          data-categorias="diluentes"
+          data-preco="59.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Diluente USP
+            </span>
+            <img src="assets/images/t36-15-tirzepatida-4-viales.jpg" alt="Água Bacteriostática 10ml"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Soluções Diluentes</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Água Bacteriostática 10ml</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 69,00</span>
+              <p class="text-xl font-bold text-primary">R$ 59,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUTO 9: Tirzepatida 15mg Monodose Retard -->
+        <article class="card-produto group flex flex-col bg-white border border-border-soft rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-0.5 transition-all"
+          data-nome="Tirzepatida 15mg Monodose Retard"
+          data-substancia="Tirzepatida"
+          data-sku="PY-TRZ-15M"
+          data-categorias="peptideos emagrecimento"
+          data-preco="1343.00">
+          <a href="produto.html" class="relative block w-full aspect-square overflow-hidden bg-slate-50">
+            <span class="absolute top-3 left-3 z-10 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              99.8% Pureza
+            </span>
+            <img src="assets/images/tirzec-15-tirzepatida.jpg" alt="Tirzepatida 15mg Monodose Retard"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </a>
+          <div class="flex flex-col flex-1 p-5 border-t border-border-soft">
+            <p class="text-[11px] uppercase tracking-wider text-primary opacity-80 font-semibold">Emagrecimento</p>
+            <h2 class="mt-1 font-semibold text-sm leading-snug">
+              <a href="produto.html" class="hover:text-accent">Tirzepatida 15mg Monodose Retard</a>
+            </h2>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 line-through">R$ 1.580,00</span>
+              <p class="text-xl font-bold text-primary">R$ 1.343,00 <span class="text-xs font-normal text-slate-500">à vista</span></p>
+            </div>
+            <a href="produto.html"
+              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">
+              Comprar / Ver Detalhes
+            </a>
+          </div>
+        </article>
+
+      </div>
+      <!-- PHP: FIM LOOP DE PRODUTOS -->
+
+      <!-- Estado Vazio (Sem resultados encontrados) -->
+      <div id="estado-vazio" class="hidden text-center py-16 px-4 bg-white border border-border-soft rounded-3xl mt-6">
+        <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path stroke-linecap="round" d="M20 20l-3.5-3.5" />
+            <path stroke-linecap="round" d="M9 11h4" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-primary">Nenhum produto encontrado</h2>
+        <p class="text-sm text-slate-500 mt-2 max-w-md mx-auto">
+          Não encontramos nenhum item correspondente aos critérios selecionados. Tente usar termos mais genéricos ou limpar os filtros.
+        </p>
+        <button type="button" id="btn-reset-vazio"
+          class="mt-5 inline-flex items-center gap-2 bg-primary hover:bg-accent text-white font-semibold text-sm px-6 py-2.5 rounded-xl transition-colors">
+          Limpar Filtros e Ver Todos
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         BENEFÍCIOS / CONFIANÇA
+    ============================================================= -->
+    <section aria-label="Benefícios" class="border-t border-border-soft bg-white mt-12">
+      <ul class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <li class="flex flex-col items-center text-center p-3">
+          <span class="w-12 h-12 rounded-xl bg-surface border border-border-soft flex items-center justify-center text-primary mb-3">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20m10-10H2" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Envio Refrigerado</h2>
+          <p class="text-xs text-slate-500 mt-1">Gelo reciclável e caixa isotérmica.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span class="w-12 h-12 rounded-xl bg-surface border border-border-soft flex items-center justify-center text-primary mb-3">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Pureza Comprovada</h2>
+          <p class="text-xs text-slate-500 mt-1">Laudo HPLC disponível por lote.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span class="w-12 h-12 rounded-xl bg-surface border border-border-soft flex items-center justify-center text-primary mb-3">
+            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Suporte no WhatsApp</h2>
+          <p class="text-xs text-slate-500 mt-1">Orientação sobre reconstituição.</p>
+        </li>
+        <li class="flex flex-col items-center text-center p-3">
+          <span class="w-12 h-12 rounded-xl bg-surface border border-border-soft flex items-center justify-center text-primary mb-3">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <rect x="4" y="10" width="16" height="11" rx="2" />
+              <path stroke-linecap="round" d="M8 10V7a4 4 0 0 1 8 0v3" />
+            </svg>
+          </span>
+          <h2 class="font-bold text-sm text-primary">Pagamento Seguro</h2>
+          <p class="text-xs text-slate-500 mt-1">Pix com desconto e cartão parcelado.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       RODAPÉ INSTITUCIONAL
+  ============================================================= -->
+  <footer id="suporte" class="bg-primary text-slate-300 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <p class="text-2xl font-extrabold text-white tracking-tight">Peptid<span class="text-accent">-PY</span></p>
+        <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 mt-1">Advanced Peptide Solutions</p>
+        <p class="mt-4 leading-relaxed text-slate-400">Peptídeos laboratoriais e suplementação de alta performance com
+          rastreabilidade de lote.</p>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Políticas</h2>
+        <ul class="space-y-2">
+          <li><a href="/politica-de-privacidade" class="hover:text-white">Política de Privacidade</a></li>
+          <li><a href="/trocas-e-devolucoes" class="hover:text-white">Trocas e Devoluções</a></li>
+          <li><a href="/politica-de-envio" class="hover:text-white">Política de Envio</a></li>
+          <li><a href="/termos-de-uso" class="hover:text-white">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Conformidade Técnica</h2>
+        <ul class="space-y-2">
+          <li><a href="#laudos" id="laudos" class="hover:text-white">Laudos HPLC por Lote</a></li>
+          <li><a href="/boas-praticas" class="hover:text-white">Boas Práticas de Armazenamento</a></li>
+          <li><a href="/rastreabilidade" class="hover:text-white">Rastreabilidade</a></li>
+          <li><a href="/faq" class="hover:text-white">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-white font-semibold mb-4">Pagamento</h2>
+        <ul class="flex flex-wrap gap-2" aria-label="Métodos de pagamento">
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Pix</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Visa</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Mastercard</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Elo</li>
+          <li class="px-3 py-1.5 rounded-md bg-white/10 text-xs font-semibold text-white">Boleto</li>
+        </ul>
+        <p class="mt-6 text-white font-semibold">Atendimento</p>
+        <p class="mt-1 text-slate-400">(11) 4004-9821<br />Seg a Sex, 9h às 18h</p>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-6 text-xs text-slate-400 leading-relaxed space-y-2">
+        <p><strong class="text-slate-200">Aviso legal:</strong> Os produtos comercializados destinam-se a uso
+          responsável, sob orientação de profissional de saúde habilitado. As informações deste site têm caráter
+          informativo e não substituem consulta médica. Mantenha fora do alcance de crianças.</p>
+        <p>&copy; 2026 Peptid-PY — Advanced Peptide Solutions. Todos os direitos reservados. CNPJ 45.892.104/0001-33</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPT JAVASCRIPT: FILTRO, BUSCA & SINCRONIZAÇÃO DE URL
+  ============================================================= -->
+  <!-- PHP / BACK-END: Em produção, a filtragem pode ser realizada via server-side (query SQL / GET params)
+       ou mantida como client-side hydration para velocidade instantânea. O script abaixo lê ?categoria= e ?busca=
+       diretamente da URL e aplica os filtros no catálogo sem dependências externas. -->
+  <script>
+    (function () {
+      const inputBusca = document.getElementById('filtro-busca');
+      const selectCategoria = document.getElementById('filtro-categoria');
+      const selectOrdenacao = document.getElementById('filtro-ordenacao');
+      const btnLimparBusca = document.getElementById('btn-limpar-busca');
+      const contadorProdutos = document.getElementById('contador-produtos');
+      const gridProdutos = document.getElementById('grid-produtos');
+      const estadoVazio = document.getElementById('estado-vazio');
+      const barraFiltrosAtivos = document.getElementById('barra-filtros-ativos');
+      const chipBusca = document.getElementById('chip-busca');
+      const termoChipBusca = document.getElementById('termo-chip-busca');
+      const removerChipBusca = document.getElementById('remover-chip-busca');
+      const chipCategoria = document.getElementById('chip-categoria');
+      const termoChipCategoria = document.getElementById('termo-chip-categoria');
+      const removerChipCategoria = document.getElementById('remover-chip-categoria');
+      const btnLimparTodos = document.getElementById('btn-limpar-todos-filtros');
+      const btnResetVazio = document.getElementById('btn-reset-vazio');
+      const navLinks = document.querySelectorAll('.nav-cat-link');
+      const navbarBusca = document.getElementById('navbar-busca-termo');
+
+      const cards = Array.from(document.querySelectorAll('.card-produto'));
+      const totalProdutos = cards.length;
+
+      // Normaliza strings para busca sem acentos e case-insensitive
+      function normalizar(texto) {
+        return (texto || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+      }
+
+      // Nomes legíveis para as categorias
+      const nomesCategorias = {
+        'peptideos': 'Peptídeos',
+        'emagrecimento': 'Emagrecimento',
+        'estetica': 'Estética & Anti-Aging',
+        'muscular': 'Ganho Muscular',
+        'recuperacao': 'Recuperação',
+        'diluentes': 'Soluções Diluentes',
+        'ofertas': 'Ofertas'
+      };
+
+      // Aplica a filtragem e ordenação nos cards
+      function aplicarFiltros(atualizarURL = true) {
+        const termoBusca = normalizar(inputBusca.value);
+        const categoriaSel = selectCategoria.value;
+        const ordenacao = selectOrdenacao.value;
+
+        // Controle do botão limpar busca rápida e sincronização com navbar
+        if (navbarBusca && navbarBusca.value !== inputBusca.value) {
+          navbarBusca.value = inputBusca.value;
+        }
+
+        if (inputBusca.value.trim().length > 0) {
+          btnLimparBusca.classList.remove('hidden');
+        } else {
+          btnLimparBusca.classList.add('hidden');
+        }
+
+        let visiveis = 0;
+
+        cards.forEach(card => {
+          const nome = normalizar(card.dataset.nome);
+          const substancia = normalizar(card.dataset.substancia);
+          const sku = normalizar(card.dataset.sku);
+          const categoriasCard = (card.dataset.categorias || '').split(' ');
+
+          const bateBusca = !termoBusca ||
+            nome.includes(termoBusca) ||
+            substancia.includes(termoBusca) ||
+            sku.includes(termoBusca);
+
+          const bateCategoria = (categoriaSel === 'todas') || categoriasCard.includes(categoriaSel);
+
+          if (bateBusca && bateCategoria) {
+            card.classList.remove('hidden');
+            visiveis++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Ordenação dos elementos visíveis no container DOM
+        const cardsOrdenados = [...cards].sort((a, b) => {
+          if (ordenacao === 'menor-preco') {
+            return parseFloat(a.dataset.preco) - parseFloat(b.dataset.preco);
+          }
+          if (ordenacao === 'maior-preco') {
+            return parseFloat(b.dataset.preco) - parseFloat(a.dataset.preco);
+          }
+          if (ordenacao === 'nome') {
+            return a.dataset.nome.localeCompare(b.dataset.nome);
+          }
+          return 0; // Relevância padrão
+        });
+
+        cardsOrdenados.forEach(card => gridProdutos.appendChild(card));
+
+        // Atualização do contador de resultados
+        if (visiveis === 0) {
+          gridProdutos.classList.add('hidden');
+          estadoVazio.classList.remove('hidden');
+          contadorProdutos.innerHTML = `Nenhum produto encontrado`;
+        } else {
+          gridProdutos.classList.remove('hidden');
+          estadoVazio.classList.add('hidden');
+          if (visiveis === totalProdutos) {
+            contadorProdutos.innerHTML = `Mostrando todos os <strong>${totalProdutos}</strong> produtos`;
+          } else {
+            contadorProdutos.innerHTML = `Mostrando <strong>${visiveis}</strong> de ${totalProdutos} produtos`;
+          }
+        }
+
+        // Atualização da barra de chips ativos
+        const temBusca = termoBusca.length > 0;
+        const temCategoria = categoriaSel !== 'todas';
+
+        if (temBusca || temCategoria) {
+          barraFiltrosAtivos.classList.remove('hidden');
+
+          if (temBusca) {
+            chipBusca.classList.remove('hidden');
+            termoChipBusca.textContent = inputBusca.value.trim();
+          } else {
+            chipBusca.classList.add('hidden');
+          }
+
+          if (temCategoria) {
+            chipCategoria.classList.remove('hidden');
+            termoChipCategoria.textContent = nomesCategorias[categoriaSel] || categoriaSel;
+          } else {
+            chipCategoria.classList.add('hidden');
+          }
+        } else {
+          barraFiltrosAtivos.classList.add('hidden');
+        }
+
+        // Destaca a categoria ativa na barra de navegação superior
+        navLinks.forEach(link => {
+          const cat = link.dataset.cat;
+          if (cat === categoriaSel) {
+            link.classList.add('border-accent', 'opacity-100');
+            link.classList.remove('border-transparent', 'opacity-80');
+          } else {
+            link.classList.remove('border-accent', 'opacity-100');
+            link.classList.add('border-transparent', 'opacity-80');
+          }
+        });
+
+        // Sincroniza a URL sem recarregar a página
+        if (atualizarURL) {
+          const url = new URL(window.location.href);
+          if (inputBusca.value.trim()) {
+            url.searchParams.set('busca', inputBusca.value.trim());
+          } else {
+            url.searchParams.delete('busca');
+            url.searchParams.delete('q');
+          }
+
+          if (categoriaSel && categoriaSel !== 'todas') {
+            url.searchParams.set('categoria', categoriaSel);
+          } else {
+            url.searchParams.delete('categoria');
+          }
+
+          window.history.replaceState({}, '', url.pathname + url.search);
+        }
+      }
+
+      // Leitura dos parâmetros de URL ao carregar a página
+      function carregarParametrosURL() {
+        const params = new URLSearchParams(window.location.search);
+        const termoURL = params.get('busca') || params.get('q');
+        const categoriaURL = params.get('categoria');
+
+        if (termoURL) {
+          inputBusca.value = termoURL;
+        }
+
+        if (categoriaURL) {
+          const catNormalizada = categoriaURL.toLowerCase();
+          // Mapeia possíveis variações de nomes vindos da URL
+          const mapaSinonimos = {
+            'peptideo': 'peptideos',
+            'peptideos-injetaveis': 'peptideos',
+            'injetaveis': 'peptideos',
+            'antiaging': 'estetica',
+            'anti-aging': 'estetica',
+            'estetica-antiaging': 'estetica',
+            'ganho-muscular': 'muscular',
+            'solucoes-diluentes': 'diluentes',
+            'promocoes': 'ofertas'
+          };
+          const categoriaFinal = mapaSinonimos[catNormalizada] || catNormalizada;
+
+          // Se a categoria existir no select, seleciona ela
+          const options = Array.from(selectCategoria.options).map(o => o.value);
+          if (options.includes(categoriaFinal)) {
+            selectCategoria.value = categoriaFinal;
+          }
+        }
+
+        aplicarFiltros(false);
+      }
+
+      // Event Listeners
+      inputBusca.addEventListener('input', () => aplicarFiltros(true));
+      selectCategoria.addEventListener('change', () => aplicarFiltros(true));
+      selectOrdenacao.addEventListener('change', () => aplicarFiltros(true));
+
+      btnLimparBusca.addEventListener('click', () => {
+        inputBusca.value = '';
+        inputBusca.focus();
+        aplicarFiltros(true);
+      });
+
+      removerChipBusca.addEventListener('click', () => {
+        inputBusca.value = '';
+        aplicarFiltros(true);
+      });
+
+      removerChipCategoria.addEventListener('click', () => {
+        selectCategoria.value = 'todas';
+        aplicarFiltros(true);
+      });
+
+      function resetarTudo() {
+        inputBusca.value = '';
+        selectCategoria.value = 'todas';
+        selectOrdenacao.value = 'relevancia';
+        aplicarFiltros(true);
+      }
+
+      btnLimparTodos.addEventListener('click', resetarTudo);
+      btnResetVazio.addEventListener('click', resetarTudo);
+
+      // Sincronização da busca na barra de navegação (navbar) quando o usuário estiver nesta página
+      if (navbarBusca) {
+        navbarBusca.addEventListener('input', () => {
+          inputBusca.value = navbarBusca.value;
+          aplicarFiltros(true);
+        });
+        if (navbarBusca.form) {
+          navbarBusca.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            inputBusca.value = navbarBusca.value;
+            aplicarFiltros(true);
+          });
+        }
+      }
+
+      // Cliques nos links de categoria da navbar quando já estiver na página de produtos
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const cat = link.dataset.cat || 'todas';
+          selectCategoria.value = cat;
+          aplicarFiltros(true);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // Inicialização imediata
+      carregarParametrosURL();
+    })();
+  </script>
+</body>
+
+</html>
