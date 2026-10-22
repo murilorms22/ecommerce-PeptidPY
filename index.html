@@ -125,8 +125,8 @@
       </div>
     </div>
 
-    <!-- Barra de categorias centralizada com letra azul, opacidade 0.8 e hover 1 -->
-    <nav aria-label="Categorias" class="border-t border-border-soft bg-white">
+    <!-- Barra de categorias centralizada com letra azul, opacidade 0.8 e hover 1 (Oculta no mobile) -->
+    <nav aria-label="Categorias" class="hidden md:block border-t border-border-soft bg-white">
       <ul
         class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-6 lg:gap-10 overflow-x-auto text-sm font-semibold whitespace-nowrap">
         <!-- INÍCIO LOOP MENU CATEGORIAS -->
@@ -149,7 +149,8 @@
             class="block py-3 text-primary opacity-80 hover:opacity-100 border-b-2 border-transparent hover:border-accent transition-all">Soluções
             Diluentes</a></li>
         <!-- FIM LOOP MENU CATEGORIAS -->
-        <li><a href="produtos.html?categoria=ofertas" class="block py-3 text-accent font-bold hover:opacity-80 transition-opacity">Ofertas</a>
+        <li><a href="produtos.html?categoria=ofertas"
+            class="block py-3 text-accent font-bold hover:opacity-80 transition-opacity">Ofertas</a>
         </li>
       </ul>
     </nav>
@@ -162,151 +163,85 @@
          gerenciados pelo painel administrativo (ex: foreach ($banners as $index => $banner)).
          O script JavaScript detecta automaticamente qualquer quantidade de slides e gera os controles.
     ============================================================= -->
-    <section id="hero-carousel" class="relative overflow-hidden bg-primary text-white min-h-[580px] lg:min-h-[620px] flex items-center group" aria-roledescription="carousel" aria-label="Destaques Peptid-PY">
-      
-      <!-- Container de Slides -->
-      <div id="hero-slides-container" class="relative w-full h-full min-h-[580px] lg:min-h-[620px]">
+    <section id="hero-carousel"
+      class="relative overflow-hidden bg-primary text-white w-full aspect-[2/1] md:aspect-[3/1] group"
+      aria-roledescription="carousel" aria-label="Destaques Peptid-PY">
+      <h1 class="sr-only">Peptid-PY | Peptídeos Puros de Grau Farmacêutico com Certificação de Pureza</h1>
 
-        <!-- SLIDE 1 (Ativo por padrão) -->
-        <article class="hero-slide absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out opacity-100 z-10" data-slide-index="0" aria-hidden="false">
-          <!-- Imagem de fundo de ponta a ponta -->
-          <img src="assets/images/hero-pipted.jpg" alt="Peptid-PY Peptídeos Puros"
-            class="absolute inset-0 w-full h-full object-cover object-center" />
-          <!-- Overlay degradê azul para contraste e legibilidade perfeita -->
-          <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/45 lg:to-primary/25" aria-hidden="true"></div>
+      <!-- Container de Slides: 100% largura e altura, adaptando-se nativamente a mobile (2:1) e desktop (3:1) -->
+      <div id="hero-slides-container" class="relative w-full h-full">
 
-          <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-28 w-full">
-            <div class="max-w-2xl">
-              <span
-                class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200 border border-white/20 bg-primary/50 backdrop-blur-md rounded-full px-4 py-1.5 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                Grau Farmacêutico Certificado
-              </span>
-              <h1
-                class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-sm text-balance">
-                Peptídeos Puros de <span class="text-accent">Grau Farmacêutico</span> com Certificação de <span
-                  class="text-accent">Pureza</span>
-              </h1>
-              <p class="mt-6 text-lg text-slate-200 font-light leading-relaxed drop-shadow-sm">
-                Cada lote é analisado por HPLC e acompanha laudo técnico. Envio refrigerado, discreto e rastreável.
-              </p>
-              <div class="mt-10 flex flex-wrap items-center gap-4">
-                <a href="produtos.html"
-                  class="inline-flex items-center gap-2 bg-accent hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-red-950/40 transition-all hover:scale-[1.02]">
-                  Ver catálogo
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </a>
-                <a href="#laudos"
-                  class="inline-flex items-center gap-2 bg-white text-primary hover:bg-slate-100 font-bold px-8 py-3.5 rounded-xl shadow-xl transition-all hover:scale-[1.02]">
-                  Consultar laudos de pureza
-                </a>
-              </div>
-            </div>
-          </div>
+        <!-- SLIDE 1 (Ativo por padrão): Tirzepatida Catedral -->
+        <article
+          class="hero-slide absolute inset-0 w-full h-full transition-all duration-700 ease-in-out opacity-100 z-10"
+          data-slide-index="0" aria-hidden="false">
+          <a href="produtos.html?categoria=emagrecimento"
+            class="block w-full h-full relative focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Promoção Tirzepatida Catedral - Aproveite nossas promoções com qualidade, segurança e resultados">
+            <picture class="block w-full h-full">
+              <source media="(min-width: 768px)" srcset="assets/images/banner-1.png" />
+              <img src="assets/images/bannermobile-1.png"
+                alt="Promoções Tirzepatida Catedral - Qualidade, Segurança e Resultados - Preços Especiais Peptid-PY"
+                class="w-full h-full object-cover object-top" loading="eager" />
+            </picture>
+          </a>
         </article>
 
-        <!-- SLIDE 2 -->
-        <article class="hero-slide absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0" data-slide-index="1" aria-hidden="true">
-          <!-- Imagem de fundo de ponta a ponta -->
-          <img src="assets/images/hero-pipted.jpg" alt="Logística Térmica Peptid-PY"
-            class="absolute inset-0 w-full h-full object-cover object-center" />
-          <!-- Overlay degradê azul para contraste e legibilidade perfeita -->
-          <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/45 lg:to-primary/25" aria-hidden="true"></div>
-
-          <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-28 w-full">
-            <div class="max-w-2xl">
-              <span
-                class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200 border border-white/20 bg-primary/50 backdrop-blur-md rounded-full px-4 py-1.5 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                Logística Térmica Especializada
-              </span>
-              <h2
-                class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-sm text-balance">
-                Envio Refrigerado com <span class="text-accent">Controle Térmico</span> e Embalagem Segura
-              </h2>
-              <p class="mt-6 text-lg text-slate-200 font-light leading-relaxed drop-shadow-sm">
-                Garantia de integridade das moléculas com caixas isotérmicas e gel refrigerante de alta durabilidade para todo o país.
-              </p>
-              <div class="mt-10 flex flex-wrap items-center gap-4">
-                <a href="produtos.html"
-                  class="inline-flex items-center gap-2 bg-accent hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-red-950/40 transition-all hover:scale-[1.02]">
-                  Conhecer Produtos
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </a>
-                <a href="https://wa.me/5511991234567" target="_blank" rel="noopener"
-                  class="inline-flex items-center gap-2 bg-white text-primary hover:bg-slate-100 font-bold px-8 py-3.5 rounded-xl shadow-xl transition-all hover:scale-[1.02]">
-                  Fale com Especialista
-                </a>
-              </div>
-            </div>
-          </div>
+        <!-- SLIDE 2: Lipoless MD -->
+        <article
+          class="hero-slide absolute inset-0 w-full h-full transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0"
+          data-slide-index="1" aria-hidden="true">
+          <a href="produtos.html?busca=Lipoless"
+            class="block w-full h-full relative focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Promoção Lipoless MD 15 - Tirzepatida 15mg/0,6mL - Praticidade, Segurança e Resultados">
+            <picture class="block w-full h-full">
+              <source media="(min-width: 768px)" srcset="assets/images/banner-2.png" />
+              <img src="assets/images/bannermobile-2.png"
+                alt="Promoções Lipoless MD 15 - Auxilia no Controle do Apetite e Estimula o Metabolismo Peptid-PY"
+                class="w-full h-full object-cover object-top" loading="lazy" />
+            </picture>
+          </a>
         </article>
 
-        <!-- SLIDE 3 -->
-        <article class="hero-slide absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0" data-slide-index="2" aria-hidden="true">
-          <!-- Imagem de fundo de ponta a ponta -->
-          <img src="assets/images/hero-pipted.jpg" alt="Laudos HPLC Peptid-PY"
-            class="absolute inset-0 w-full h-full object-cover object-center" />
-          <!-- Overlay degradê azul para contraste e legibilidade perfeita -->
-          <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/45 lg:to-primary/25" aria-hidden="true"></div>
-
-          <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-28 w-full">
-            <div class="max-w-2xl">
-              <span
-                class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-slate-200 border border-white/20 bg-primary/50 backdrop-blur-md rounded-full px-4 py-1.5 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                Transparência &amp; Pureza Laboratorial
-              </span>
-              <h2
-                class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-tight text-white drop-shadow-sm text-balance">
-                Substâncias com Pureza <span class="text-accent">Acima de 99%</span> e Laudo HPLC
-              </h2>
-              <p class="mt-6 text-lg text-slate-200 font-light leading-relaxed drop-shadow-sm">
-                Relatórios cromatográficos acessíveis por lote. Segurança, rastreabilidade e rigor científico em cada frasco.
-              </p>
-              <div class="mt-10 flex flex-wrap items-center gap-4">
-                <a href="produtos.html"
-                  class="inline-flex items-center gap-2 bg-accent hover:bg-red-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-red-950/40 transition-all hover:scale-[1.02]">
-                  Acessar Catálogo
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </a>
-                <a href="#laudos"
-                  class="inline-flex items-center gap-2 bg-white text-primary hover:bg-slate-100 font-bold px-8 py-3.5 rounded-xl shadow-xl transition-all hover:scale-[1.02]">
-                  Consultar Laudos
-                </a>
-              </div>
-            </div>
-          </div>
+        <!-- SLIDE 3: Tirzec 15 -->
+        <article
+          class="hero-slide absolute inset-0 w-full h-full transition-all duration-700 ease-in-out opacity-0 pointer-events-none z-0"
+          data-slide-index="2" aria-hidden="true">
+          <a href="produtos.html?busca=Tirzec"
+            class="block w-full h-full relative focus:outline-none focus:ring-2 focus:ring-accent"
+            aria-label="Promoção Tirzec 15 - Tirzepatida 15mg/0,5mL - Solução Injetável">
+            <picture class="block w-full h-full">
+              <source media="(min-width: 768px)" srcset="assets/images/banner-3.png" />
+              <img src="assets/images/bannermobile-3.png"
+                alt="Promoções Tirzec 15 - Tirzepatida 15 mg/0,5 mL - Qualidade Garantida e Solução Injetável Peptid-PY"
+                class="w-full h-full object-cover object-top" loading="lazy" />
+            </picture>
+          </a>
         </article>
 
       </div>
 
       <!-- Controles de Navegação: Setas Anterior e Próximo -->
       <button type="button" id="hero-prev" aria-label="Slide anterior"
-        class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary/50 hover:bg-accent text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all opacity-75 hover:opacity-100 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+        class="hidden sm:flex absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-primary/60 hover:bg-accent text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"
+          aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <button type="button" id="hero-next" aria-label="Próximo slide"
-        class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary/50 hover:bg-accent text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all opacity-75 hover:opacity-100 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+        class="hidden sm:flex absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-primary/60 hover:bg-accent text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"
+          aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       <!-- Indicadores de Paginação Dinâmicos (Dots gerados via JavaScript de acordo com o total de slides) -->
-      <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5" role="tablist" aria-label="Indicadores do Carrossel">
+      <div id="hero-dots"
+        class="absolute bottom-2 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-primary/50 backdrop-blur-md border border-white/10"
+        role="tablist" aria-label="Indicadores do Carrossel">
         <!-- Inserido dinamicamente pelo script JS -->
       </div>
     </section>
@@ -441,8 +376,8 @@
                   vista</span></p>
             </div>
             <a href="produto.html"
-              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-              / Ver Detalhes</a>
+              class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+              mais</a>
           </div>
         </article>
 
@@ -468,8 +403,8 @@
                   vista</span></p>
             </div>
             <a href="produto.html"
-              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-              / Ver Detalhes</a>
+              class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+              mais</a>
           </div>
         </article>
 
@@ -495,8 +430,8 @@
                   vista</span></p>
             </div>
             <a href="produto.html"
-              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-              / Ver Detalhes</a>
+              class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+              mais</a>
           </div>
         </article>
 
@@ -522,8 +457,8 @@
                   vista</span></p>
             </div>
             <a href="produto.html"
-              class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-              / Ver Detalhes</a>
+              class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+              mais</a>
           </div>
         </article>
       </div>
@@ -567,8 +502,8 @@
                     vista</span></p>
               </div>
               <a href="produto.html"
-                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-                / Ver Detalhes</a>
+                class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+                mais</a>
             </div>
           </article>
 
@@ -594,8 +529,8 @@
                     vista</span></p>
               </div>
               <a href="produto.html"
-                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-                / Ver Detalhes</a>
+                class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+                mais</a>
             </div>
           </article>
 
@@ -621,8 +556,8 @@
                     vista</span></p>
               </div>
               <a href="produto.html"
-                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-                / Ver Detalhes</a>
+                class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+                mais</a>
             </div>
           </article>
 
@@ -647,8 +582,8 @@
                     vista</span></p>
               </div>
               <a href="produto.html"
-                class="mt-4 text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Comprar
-                / Ver Detalhes</a>
+                class="mt-auto block text-center text-sm font-semibold border border-primary rounded-xl py-2.5 hover:bg-primary hover:text-white transition-colors">Ver
+                mais</a>
             </div>
           </article>
         </div>
@@ -717,160 +652,160 @@
        correspondentes e gerencia o autoplay, pausa ao passar o mouse e swipe mobile.
   ============================================================= -->
   <script>
-    (function () {
-      const carousel = document.getElementById('hero-carousel');
-      if (!carousel) return;
+      (function () {
+        const carousel = document.getElementById('hero-carousel');
+        if (!carousel) return;
 
-      const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
-      const btnPrev = document.getElementById('hero-prev');
-      const btnNext = document.getElementById('hero-next');
-      const dotsContainer = document.getElementById('hero-dots');
+        const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+        const btnPrev = document.getElementById('hero-prev');
+        const btnNext = document.getElementById('hero-next');
+        const dotsContainer = document.getElementById('hero-dots');
 
-      const totalSlides = slides.length;
-      if (totalSlides === 0) return;
+        const totalSlides = slides.length;
+        if (totalSlides === 0) return;
 
-      // Se houver apenas 1 slide cadastrado, esconde controles desnecessários
-      if (totalSlides <= 1) {
-        if (btnPrev) btnPrev.style.display = 'none';
-        if (btnNext) btnNext.style.display = 'none';
-        if (dotsContainer) dotsContainer.style.display = 'none';
-        return;
-      }
-
-      let currentIndex = 0;
-      let autoplayTimer = null;
-      const intervalMs = 6000; // 6 segundos entre cada transição automática
-
-      // Geração 100% dinâmica dos indicadores (dots) com base no total de slides
-      dotsContainer.innerHTML = '';
-      const dots = [];
-
-      slides.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
-        dot.className = index === 0
-          ? 'w-8 h-2.5 rounded-full bg-accent transition-all duration-300 shadow-sm'
-          : 'w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
-
-        dot.addEventListener('click', () => {
-          irParaSlide(index);
-          reiniciarAutoplay();
-        });
-
-        dotsContainer.appendChild(dot);
-        dots.push(dot);
-      });
-
-      // Função de transição suave entre slides
-      function irParaSlide(novoIndex) {
-        currentIndex = (novoIndex + totalSlides) % totalSlides;
-
-        slides.forEach((slide, idx) => {
-          const isActive = idx === currentIndex;
-          if (isActive) {
-            slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
-            slide.classList.add('opacity-100', 'z-10');
-            slide.setAttribute('aria-hidden', 'false');
-          } else {
-            slide.classList.remove('opacity-100', 'z-10');
-            slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
-            slide.setAttribute('aria-hidden', 'true');
-          }
-        });
-
-        // Atualização dos indicadores (dots)
-        dots.forEach((dot, idx) => {
-          if (idx === currentIndex) {
-            dot.className = 'w-8 h-2.5 rounded-full bg-accent transition-all duration-300 shadow-sm';
-            dot.setAttribute('aria-selected', 'true');
-          } else {
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
-            dot.setAttribute('aria-selected', 'false');
-          }
-        });
-      }
-
-      function proximoSlide() {
-        irParaSlide(currentIndex + 1);
-      }
-
-      function slideAnterior() {
-        irParaSlide(currentIndex - 1);
-      }
-
-      function iniciarAutoplay() {
-        pararAutoplay();
-        autoplayTimer = setInterval(proximoSlide, intervalMs);
-      }
-
-      function pararAutoplay() {
-        if (autoplayTimer) {
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
+        // Se houver apenas 1 slide cadastrado, esconde controles desnecessários
+        if (totalSlides <= 1) {
+          if (btnPrev) btnPrev.style.display = 'none';
+          if (btnNext) btnNext.style.display = 'none';
+          if (dotsContainer) dotsContainer.style.display = 'none';
+          return;
         }
-      }
 
-      function reiniciarAutoplay() {
-        iniciarAutoplay();
-      }
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        const intervalMs = 6000; // 6 segundos entre cada transição automática
 
-      // Eventos das Setas de Navegação
-      if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-          slideAnterior();
-          reiniciarAutoplay();
+        // Geração 100% dinâmica dos indicadores (dots) com base no total de slides
+        dotsContainer.innerHTML = '';
+        const dots = [];
+
+        slides.forEach((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
+          dot.className = index === 0
+            ? 'w-8 h-2.5 rounded-full bg-accent transition-all duration-300 shadow-sm'
+            : 'w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
+
+          dot.addEventListener('click', () => {
+            irParaSlide(index);
+            reiniciarAutoplay();
+          });
+
+          dotsContainer.appendChild(dot);
+          dots.push(dot);
         });
-      }
 
-      if (btnNext) {
-        btnNext.addEventListener('click', () => {
-          proximoSlide();
-          reiniciarAutoplay();
-        });
-      }
+        // Função de transição suave entre slides
+        function irParaSlide(novoIndex) {
+          currentIndex = (novoIndex + totalSlides) % totalSlides;
 
-      // Pausa automática no hover para facilitar a leitura dos textos e cliques nos CTAs
-      carousel.addEventListener('mouseenter', pararAutoplay);
-      carousel.addEventListener('mouseleave', iniciarAutoplay);
+          slides.forEach((slide, idx) => {
+            const isActive = idx === currentIndex;
+            if (isActive) {
+              slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+              slide.classList.add('opacity-100', 'z-10');
+              slide.setAttribute('aria-hidden', 'false');
+            } else {
+              slide.classList.remove('opacity-100', 'z-10');
+              slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+              slide.setAttribute('aria-hidden', 'true');
+            }
+          });
 
-      // Acessibilidade: navegação pelas setas do teclado
-      carousel.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          slideAnterior();
-          reiniciarAutoplay();
-        } else if (e.key === 'ArrowRight') {
-          proximoSlide();
-          reiniciarAutoplay();
+          // Atualização dos indicadores (dots)
+          dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+              dot.className = 'w-8 h-2.5 rounded-full bg-accent transition-all duration-300 shadow-sm';
+              dot.setAttribute('aria-selected', 'true');
+            } else {
+              dot.className = 'w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
+              dot.setAttribute('aria-selected', 'false');
+            }
+          });
         }
-      });
 
-      // Suporte a Touch / Swipe em dispositivos móveis
-      let touchStartX = 0;
-      let touchEndX = 0;
+        function proximoSlide() {
+          irParaSlide(currentIndex + 1);
+        }
 
-      carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        pararAutoplay();
-      }, { passive: true });
+        function slideAnterior() {
+          irParaSlide(currentIndex - 1);
+        }
 
-      carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diffX = touchEndX - touchStartX;
-        if (Math.abs(diffX) > 40) {
-          if (diffX < 0) {
-            proximoSlide();
-          } else {
+        function iniciarAutoplay() {
+          pararAutoplay();
+          autoplayTimer = setInterval(proximoSlide, intervalMs);
+        }
+
+        function pararAutoplay() {
+          if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        }
+
+        function reiniciarAutoplay() {
+          iniciarAutoplay();
+        }
+
+        // Eventos das Setas de Navegação
+        if (btnPrev) {
+          btnPrev.addEventListener('click', () => {
             slideAnterior();
-          }
+            reiniciarAutoplay();
+          });
         }
-        iniciarAutoplay();
-      }, { passive: true });
 
-      // Início do ciclo automático
-      iniciarAutoplay();
-    })();
+        if (btnNext) {
+          btnNext.addEventListener('click', () => {
+            proximoSlide();
+            reiniciarAutoplay();
+          });
+        }
+
+        // Pausa automática no hover para facilitar a leitura dos textos e cliques nos CTAs
+        carousel.addEventListener('mouseenter', pararAutoplay);
+        carousel.addEventListener('mouseleave', iniciarAutoplay);
+
+        // Acessibilidade: navegação pelas setas do teclado
+        carousel.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            slideAnterior();
+            reiniciarAutoplay();
+          } else if (e.key === 'ArrowRight') {
+            proximoSlide();
+            reiniciarAutoplay();
+          }
+        });
+
+        // Suporte a Touch / Swipe em dispositivos móveis
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+          pararAutoplay();
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diffX = touchEndX - touchStartX;
+          if (Math.abs(diffX) > 40) {
+            if (diffX < 0) {
+              proximoSlide();
+            } else {
+              slideAnterior();
+            }
+          }
+          iniciarAutoplay();
+        }, { passive: true });
+
+        // Início do ciclo automático
+        iniciarAutoplay();
+      })();
   </script>
 </body>
 
