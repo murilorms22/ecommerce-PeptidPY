@@ -63,8 +63,16 @@
       </a>
 
       <!-- Busca -->
-      <form action="produtos.html" method="get" role="search"
-        class="order-3 lg:order-none w-full lg:flex-1 flex items-stretch border border-border-soft rounded-full overflow-hidden focus-within:border-primary transition-colors">
+      <div class="order-3 lg:order-none w-full lg:flex-1 flex items-center gap-3">
+        <!-- Menu hambúrguer (abre o drawer de categorias) -->
+        <button type="button" id="menu-hamburguer-btn" aria-label="Abrir menu de categorias" aria-controls="menu-drawer" aria-expanded="false"
+          class="md:hidden shrink-0 w-11 h-11 flex flex-col items-center justify-center gap-[5px] rounded-full border border-border-soft hover:border-primary hover:bg-surface transition-colors focus:outline-none focus:ring-2 focus:ring-accent">
+          <span class="block w-5 h-0.5 bg-primary rounded"></span>
+          <span class="block w-5 h-0.5 bg-primary rounded"></span>
+          <span class="block w-5 h-0.5 bg-primary rounded"></span>
+        </button>
+        <form action="produtos.html" method="get" role="search"
+        class="flex-1 min-w-0 flex items-stretch border border-border-soft rounded-full overflow-hidden focus-within:border-primary transition-colors">
         <label for="busca-termo" class="sr-only">Buscar produtos</label>
         <input id="busca-termo" name="busca" type="search" placeholder="Buscar peptídeos, fármacos, diluentes..."
           class="flex-1 px-5 py-2.5 text-sm outline-none min-w-0 bg-transparent" />
@@ -76,6 +84,7 @@
           </svg>
         </button>
       </form>
+      </div>
 
       <!-- Ações -->
       <div class="ml-auto lg:ml-0 flex items-center gap-2 sm:gap-4 shrink-0">
@@ -809,6 +818,104 @@
         // Início do ciclo automático
         iniciarAutoplay();
       })();
+  </script>
+
+  <!-- ============================================================
+       MENU LATERAL (HAMBÚRGUER) - abre da esquerda para a direita
+  ============================================================= -->
+  <style>
+    #menu-overlay { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+    #menu-overlay.open { opacity: 1; pointer-events: auto; }
+    #menu-drawer { transform: translateX(-100%); visibility: hidden; transition: transform .4s cubic-bezier(.22,1,.36,1), visibility 0s linear .4s; }
+    #menu-drawer.open { transform: translateX(0); visibility: visible; transition: transform .4s cubic-bezier(.22,1,.36,1), visibility 0s; }
+    #menu-drawer .menu-item { opacity: 0; transform: translateX(-16px); }
+    #menu-drawer.open .menu-item { opacity: 1; transform: translateX(0); transition: opacity .4s ease, transform .4s ease; transition-delay: calc(.12s + var(--i) * 0.05s); }
+    #menu-hamburguer-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #menu-hamburguer-btn.open span:nth-child(2) { opacity: 0; }
+    #menu-hamburguer-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #menu-hamburguer-btn span { transition: transform .3s ease, opacity .2s ease; }
+  </style>
+  <div id="menu-overlay" class="md:hidden fixed inset-0 bg-primary/50 backdrop-blur-sm z-[60]" aria-hidden="true"></div>
+  <aside id="menu-drawer" class="md:hidden fixed top-0 left-0 h-full w-[300px] max-w-[85vw] bg-white shadow-2xl z-[70] flex flex-col" aria-label="Menu de categorias">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-border-soft">
+      <span class="text-sm font-extrabold tracking-wide uppercase text-primary">Categorias</span>
+      <button type="button" id="menu-fechar-btn" aria-label="Fechar menu" class="w-9 h-9 rounded-full hover:bg-surface flex items-center justify-center transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto" aria-label="Categorias de produtos">
+      <ul>
+        <li class="menu-item" style="--i:0">
+          <a href="produtos.html" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-bold text-primary bg-surface hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Ver todos os produtos
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:1">
+          <a href="produtos.html?categoria=peptideos" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Peptídeos
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:2">
+          <a href="produtos.html?categoria=emagrecimento" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Emagrecimento
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:3">
+          <a href="produtos.html?categoria=estetica" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Estética &amp; Anti-Aging
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:4">
+          <a href="produtos.html?categoria=muscular" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Ganho Muscular
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:5">
+          <a href="produtos.html?categoria=recuperacao" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Recuperação
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:6">
+          <a href="produtos.html?categoria=diluentes" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-semibold text-primary/80 hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Soluções Diluentes
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+        <li class="menu-item" style="--i:7">
+          <a href="produtos.html?categoria=ofertas" class="flex items-center justify-between px-6 py-3.5 text-[15px] font-bold text-accent hover:bg-surface hover:text-accent hover:pl-8 transition-all duration-200 border-b border-border-soft/60">
+            Ofertas
+            <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <script>
+    (function () {
+      var btn = document.getElementById('menu-hamburguer-btn');
+      var drawer = document.getElementById('menu-drawer');
+      var overlay = document.getElementById('menu-overlay');
+      var close = document.getElementById('menu-fechar-btn');
+      if (!btn || !drawer) return;
+      function toggle(open) {
+        drawer.classList.toggle('open', open);
+        overlay.classList.toggle('open', open);
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      btn.addEventListener('click', function () { toggle(!drawer.classList.contains('open')); });
+      close.addEventListener('click', function () { toggle(false); });
+      overlay.addEventListener('click', function () { toggle(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
+      drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { toggle(false); }); });
+    })();
   </script>
 </body>
 
